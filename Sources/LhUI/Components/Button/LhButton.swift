@@ -89,7 +89,7 @@ public struct LhButton: View {
       // 花纹底纹（垫在底色之下；不影响文字对比度）
       ZStack {
         if appearance.patternColor != nil {
-          DiagonalPatternFill(patternColor: appearance.patternColor)
+          LhDiagonalPatternFill(patternColor: appearance.patternColor)
         }
         RoundedRectangle(cornerRadius: appearance.borderRadius)
           .fill(appearance.containerColor)
@@ -134,8 +134,8 @@ public struct LhButton: View {
 
 /// 国风花纹底纹：45° 斜纹叠加（消费 color.decoration 令牌）。
 /// 与 web 血脉的 CSS repeating-linear-gradient 方案对齐；颜色由按钮外观解析传入，
-/// 明暗主题跟随。
-private struct DiagonalPatternFill: View {
+/// 明暗主题跟随。（命名规范总纲 D20：自有类型一律 Lh 前缀）
+private struct LhDiagonalPatternFill: View {
   let patternColor: Color?
 
   var body: some View {

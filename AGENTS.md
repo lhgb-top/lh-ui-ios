@@ -58,7 +58,15 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
 - **回退形态**：家族布局不存在时（CI 单仓 clone），`@lh-ui/core` npm 包的 `files:["dist"]`
   含四端产物。SPM 远程依赖回退在 nM6 打通后接入。
 
-## 五、平台 gotcha
+## 五、命名规范（总纲 D20）
+
+- **模块名即包名**：SPM module `lh-ui-ios`，products `LhUI` / target `LhUITokens` 已带 LH 品牌前缀；
+  iOS 无反域名包名概念，无 bundleName（由宿主 App 决定）。
+- **自有标识符一律 LH 前缀**：类型 / 枚举 / 结构体 `Lh*`（`LhButton`、`LhButtonType`、
+  `LhColors`、`LhDiagonalPatternFill`），按语言惯例定大小写；第三方符号不加。
+- npm / ohpm 的 `@lh-ui/*` scope 不受此约束。
+
+## 六、平台 gotcha
 
 - **单位**：尺寸/字号都是 `CGFloat`（单位 pt，无 dp/sp 之分）。暗色对象不含尺寸令牌，
   取尺寸时始终走明色对象。
@@ -72,7 +80,7 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
 - **圆角**：`Radius.circle` 是 0.5 分数，端侧取 `min(宽,高)/2` 换算，不能当 pt 用。
 - **#Preview 即文档**：`LhButtonPreviews.swift` 是组件示例的第一现场，文档站 HTML 模拟器是第二现场。
 
-## 六、命令速查
+## 七、命令速查
 
 | 任务 | 命令 | 说明 |
 | --- | --- | --- |
@@ -83,7 +91,7 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
 | 文档 dev | `pnpm docs:dev` | 先 gen:sim 再起 VitePress（端口 5182） |
 | 文档构建 | `pnpm docs:build` | 部署前跑，产物在 docs/.vitepress/dist |
 
-## 七、Read before touching sensitive areas
+## 八、Read before touching sensitive areas
 
 - 改 `LhTheme.swift`：先读 core 的 `dist/ios/Sources/LhUITokens/LhDarkTokens.swift`，确认暗色覆盖范围
   （只 Color，不含尺寸），否则主题层取尺寸会拿到错误对象。
