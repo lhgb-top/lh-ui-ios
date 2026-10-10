@@ -1,0 +1,18 @@
+# 令牌生成物（由 scripts/link-tokens.mjs 从 ../lh-ui-core/dist/ios 同步，禁止手改）
+Sources/LhUITokens/
+
+# 文档模拟器令牌（由 scripts/gen-sim-tokens.mjs 生成）
+docs/.vitepress/theme/sim-tokens.css
+
+# Swift 构建产物
+.build/
+*.xcodeproj
+Package.resolved
+
+# node
+node_modules/
+.pnpm-store/
+
+# macOS / IDE
+.DS_Store
+.swiftpm/
