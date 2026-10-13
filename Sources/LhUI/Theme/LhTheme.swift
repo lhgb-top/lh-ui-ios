@@ -51,6 +51,8 @@ public struct LhColors: Equatable {
   public let hoverBg: Color
   public let selected: Color
   public let focus: Color
+  /// 中性墨色（toast 深色底等）；暗色提亮，见 color-dark.json 的 ink 覆盖
+  public let ink: Color
 
   public init(
     primary: Color, primaryHover: Color, primaryActive: Color, primaryBg: Color,
@@ -65,7 +67,7 @@ public struct LhColors: Equatable {
     backgroundOverlay: Color,
     borderBase: Color, borderLight: Color, borderLighter: Color, borderExtraLight: Color,
     disabledBg: Color, disabledText: Color, disabledBorder: Color,
-    decoration: Color, hoverBg: Color, selected: Color, focus: Color
+    decoration: Color, hoverBg: Color, selected: Color, focus: Color, ink: Color
   ) {
     self.primary = primary
     self.primaryHover = primaryHover
@@ -109,6 +111,7 @@ public struct LhColors: Equatable {
     self.hoverBg = hoverBg
     self.selected = selected
     self.focus = focus
+    self.ink = ink
   }
 }
 
@@ -155,17 +158,19 @@ public let LightLhColors = LhColors(
   decoration: LhTokens.Color.decoration,
   hoverBg: LhTokens.Color.hoverBg,
   selected: LhTokens.Color.selected,
-  focus: LhTokens.Color.focus
+  focus: LhTokens.Color.focus,
+  ink: LhTokens.Color.ink
 )
 
-/// 暗色色板：逐字段取 LhDarkTokens.Color（并列对象，仅颜色覆盖）
+/// 暗色色板：逐字段取 LhDarkTokens.Color（并列对象，仅颜色覆盖）。
+/// 暗色未覆盖的键回退明色令牌——core 的暗色模型只声明需要覆盖的增量键。
 public let DarkLhColors = LhColors(
   primary: LhDarkTokens.Color.Primary.`default`,
   primaryHover: LhDarkTokens.Color.Primary.hover,
   primaryActive: LhDarkTokens.Color.Primary.active,
   primaryBg: LhDarkTokens.Color.Primary.bg,
   primaryBorder: LhDarkTokens.Color.Primary.border,
-  onPrimary: LhDarkTokens.Color.onPrimary,
+  onPrimary: LhTokens.Color.onPrimary,
   success: LhDarkTokens.Color.Success.`default`,
   successHover: LhDarkTokens.Color.Success.hover,
   successActive: LhDarkTokens.Color.Success.active,
@@ -201,7 +206,8 @@ public let DarkLhColors = LhColors(
   decoration: LhDarkTokens.Color.decoration,
   hoverBg: LhDarkTokens.Color.hoverBg,
   selected: LhDarkTokens.Color.selected,
-  focus: LhDarkTokens.Color.focus
+  focus: LhDarkTokens.Color.focus,
+  ink: LhDarkTokens.Color.ink
 )
 
 /// 主题环境键：SwiftUI Environment 注入，未注入时回退明色（缺省即明色）

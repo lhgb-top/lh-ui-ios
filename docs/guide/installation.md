@@ -12,7 +12,7 @@ Xcode：File → Add Package Dependencies…，填入本仓地址；或直接编
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/lhgb/lh-ui-ios", from: "0.0.1")
+  .package(url: "https://github.com/lhgb-top/lh-ui-ios", from: "0.0.1")
 ],
 targets: [
   .target(name: "MyApp", dependencies: [.product(name: "LhUI", from: "lh-ui-ios")])

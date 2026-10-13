@@ -4,6 +4,16 @@
   "private": true,
   "type": "module",
   "description": "lh-ui 原生血脉 iOS 端：Swift + SwiftUI UI 库（构建期工具脚本，非运行时）",
+  "license": "Apache-2.0",
+  "author": "lhgb <i@lhgb.top>",
+  "homepage": "https://www.lhgb.top/lhui/ios/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhgb-top/lh-ui-ios.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lhgb-top/lh-ui-ios/issues"
+  },
   "engines": {
     "node": ">=20"
   },
@@ -12,14 +22,18 @@
     "link:tokens": "node scripts/link-tokens.mjs",
     "link:tokens:check": "node scripts/link-tokens.mjs --check",
     "gen:sim": "node scripts/gen-sim-tokens.mjs",
-    "docs:dev": "pnpm gen:sim && vitepress dev docs --port 5182",
-    "docs:build": "pnpm gen:sim && vitepress build docs",
+    "gen:docs": "node scripts/gen-doc-pages.mjs",
+    "copy:true": "node scripts/copy-true-shots.mjs",
+    "docs:dev": "pnpm gen:sim && pnpm copy:true && vitepress dev docs --port 5182",
+    "docs:build": "pnpm gen:sim && pnpm copy:true && vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "changeset": "changeset",
-    "changeset:version": "changeset version"
+    "changeset:version": "changeset version",
+    "release:push": "node scripts/push-release.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12",
+    "vite": "^5.4.14",
     "vitepress": "^1.6.4",
     "vue": "^3.5.13"
   },

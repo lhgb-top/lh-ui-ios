@@ -13,6 +13,9 @@ let package = Package(
   ],
   products: [
     .library(name: "LhUI", targets: ["LhUI"]),
+    // 原生文档模块（D21）：宿主 LhDocsView + 生成页面 + 手写真交互预览。
+    // 依赖 LhUI；App 侧引入本产物即可拖入一个真交互文档界面（对标 Android :docsui）。
+    .library(name: "LhUIDocs", targets: ["LhUIDocs"]),
   ],
   targets: [
     .target(
@@ -23,6 +26,11 @@ let package = Package(
       name: "LhUI",
       dependencies: ["LhUITokens"],
       path: "Sources/LhUI"
+    ),
+    .target(
+      name: "LhUIDocs",
+      dependencies: ["LhUI"],
+      path: "Sources/LhUIDocs"
     ),
     .testTarget(
       name: "LhUITests",

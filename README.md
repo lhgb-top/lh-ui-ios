@@ -11,7 +11,7 @@
 - **国风设计语言**：青花瓷蓝主色、宣纸白底、藤黄朱砂点缀，衬线字体栈（由 core 令牌驱动）。
 - **令牌驱动**：组件零硬编码色值/间距，全部消费 codegen 生成的 `LhTokens` / `LhDarkTokens`。
 - **明暗双主题**：`LhTheme` 一行切换（Environment 注入），暗色令牌由 core 预计算（无运行时调色）。
-- **契约一致**：props 命名与 `lh-ui-core/specs` 逐条对齐，五端 + web 行为共享。
+- **契约一致**：props 命名与 `lh-ui-core/specs` 逐条对齐，四端 + web 行为共享。
 - **黄金用例**：`cases/button.json` 的 8 条断言翻译为 XCTest，**macOS 宿主即可运行**（无需模拟器）。
 
 ## 快速开始
@@ -21,7 +21,7 @@
 Xcode：File → Add Package Dependencies… 填入本仓地址；或：
 
 ```swift
-.package(url: "https://github.com/lhgb/lh-ui-ios", from: "0.0.1")
+.package(url: "https://github.com/lhgb-top/lh-ui-ios", from: "0.0.1")
 ```
 
 ### 2. 使用组件
@@ -71,4 +71,4 @@ pnpm docs:dev    # 本地文档站（含 HTML 模拟器预览），端口 5182
 | 成员 | 血脉 | 技术栈 |
 | --- | --- | --- |
 | lh-ui-share → plus / vue2 / react / uniapp | web | TS core + SCSS + 各框架 |
-| lh-ui-core → android / **ios** / harmony / c | 原生 | JSON 令牌 + codegen → 各端原生 |
+| lh-ui-core → android / **ios** / harmony / windows | 原生 | JSON 令牌 + codegen → 各端原生 |

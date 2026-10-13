@@ -139,15 +139,8 @@ public enum LhButtonStyle {
   }
 
   /// 图标名 → SF Symbol 的本地映射（spec：icon 是图标名，各端按本地图标体系渲染）。
-  /// 未登记的图标名返回 nil（不绘制），不崩溃。
+  /// 转发到全仓统一的 LhIconMap；未登记的图标名返回 nil（不绘制），不崩溃。
   public static func icon(for name: String?) -> String? {
-    guard let name else { return nil }
-    let symbols = [
-      "search": "magnifyingglass",
-      "refresh": "arrow.clockwise",
-      "check": "checkmark",
-      "close": "xmark",
-    ]
-    return symbols[name]
+    LhIconMap.symbol(for: name)
   }
 }

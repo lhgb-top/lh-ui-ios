@@ -7,7 +7,7 @@
  *   3. 都不存在 —— 报错退出
  *
  * 目标 Sources/LhUITokens/ 是生成物（.gitignore），禁止手改。
- * 与 android / harmony / c 仓的脚本同构。
+ * 与 android / harmony / windows 仓的脚本同构。
  */
 
 import { cpSync, existsSync, readdirSync, rmSync, statSync } from 'node:fs'

@@ -10,7 +10,7 @@
   justify-content: center;
   gap: var(--lh-spacing-xs);
   height: var(--lh-button-height-medium);
-  padding: 0 var(--lh-button-padding-horizontal-medium);
+  padding: 0 var(--lh-button-paddingHorizontal-medium);
   font-size: var(--lh-button-fontSize-medium);
   font-weight: var(--lh-button-fontWeight);
   font-family: var(--lh-typography-fontFamily);
@@ -67,13 +67,13 @@
 /* 尺寸 */
 .sim-btn--small {
   height: var(--lh-button-height-small);
-  padding: 0 var(--lh-button-padding-horizontal-small);
+  padding: 0 var(--lh-button-paddingHorizontal-small);
   font-size: var(--lh-button-fontSize-small);
 }
 
 .sim-btn--large {
   height: var(--lh-button-height-large);
-  padding: 0 var(--lh-button-padding-horizontal-large);
+  padding: 0 var(--lh-button-paddingHorizontal-large);
   font-size: var(--lh-button-fontSize-large);
 }
 
@@ -135,4 +135,471 @@
 
 .sim-btn--pattern > * {
   position: relative;
+}
+
+/* =====================================================================================
+ * 以下为 13 个新增组件的模拟器样式。全部 var(--lh-*)，零字面量；
+ * 与 Swift 侧各组件的 resolveAppearance() 映射一一对应。
+ * ===================================================================================== */
+
+/* Icon 图标 */
+.sim-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lh-icon-size-medium);
+  height: var(--lh-icon-size-medium);
+  color: var(--lh-color-text-primary);
+}
+.sim-icon > svg { width: 100%; height: 100%; }
+.sim-icon--small { width: var(--lh-icon-size-small); height: var(--lh-icon-size-small); }
+.sim-icon--large { width: var(--lh-icon-size-large); height: var(--lh-icon-size-large); }
+.sim-icon--primary { color: var(--lh-color-primary-default); }
+.sim-icon--success { color: var(--lh-color-success-default); }
+.sim-icon--warning { color: var(--lh-color-warning-default); }
+.sim-icon--danger { color: var(--lh-color-danger-default); }
+.sim-icon--info { color: var(--lh-color-info-default); }
+.sim-icon--regular { color: var(--lh-color-text-regular); }
+.sim-icon--secondary { color: var(--lh-color-text-secondary); }
+
+/* Tag 标签 */
+.sim-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lh-spacing-xs);
+  height: var(--lh-tag-height-medium);
+  padding: 0 var(--lh-tag-paddingHorizontal-medium);
+  font-size: var(--lh-tag-fontSize-medium);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+  background: var(--lh-color-background-default);
+  border: var(--lh-tag-borderWidth) solid var(--lh-color-border-base);
+  border-radius: var(--lh-tag-borderRadius);
+}
+.sim-tag--primary { color: var(--lh-color-onPrimary); background: var(--lh-color-primary-default); border-color: transparent; }
+.sim-tag--success { color: var(--lh-color-onPrimary); background: var(--lh-color-success-default); border-color: transparent; }
+.sim-tag--warning { color: var(--lh-color-onPrimary); background: var(--lh-color-warning-default); border-color: transparent; }
+.sim-tag--danger { color: var(--lh-color-onPrimary); background: var(--lh-color-danger-default); border-color: transparent; }
+.sim-tag--info { color: var(--lh-color-onPrimary); background: var(--lh-color-info-default); border-color: transparent; }
+.sim-tag--plain.sim-tag--primary { color: var(--lh-color-primary-default); background: var(--lh-color-primary-bg); border-color: var(--lh-color-primary-default); }
+.sim-tag--plain.sim-tag--success { color: var(--lh-color-success-default); background: var(--lh-color-success-bg); border-color: var(--lh-color-success-default); }
+.sim-tag--plain.sim-tag--warning { color: var(--lh-color-warning-default); background: var(--lh-color-warning-bg); border-color: var(--lh-color-warning-default); }
+.sim-tag--plain.sim-tag--danger { color: var(--lh-color-danger-default); background: var(--lh-color-danger-bg); border-color: var(--lh-color-danger-default); }
+.sim-tag--plain.sim-tag--info { color: var(--lh-color-info-default); background: var(--lh-color-info-bg); border-color: var(--lh-color-info-default); }
+.sim-tag--small { height: var(--lh-tag-height-small); padding: 0 var(--lh-tag-paddingHorizontal-small); font-size: var(--lh-tag-fontSize-small); }
+.sim-tag--large { height: var(--lh-tag-height-large); padding: 0 var(--lh-tag-paddingHorizontal-large); font-size: var(--lh-tag-fontSize-large); }
+.sim-tag--round { border-radius: calc(var(--lh-tag-height-medium) / 2); }
+.sim-tag--round.sim-tag--small { border-radius: calc(var(--lh-tag-height-small) / 2); }
+.sim-tag--round.sim-tag--large { border-radius: calc(var(--lh-tag-height-large) / 2); }
+.sim-tag__close {
+  width: var(--lh-tag-fontSize-medium);
+  height: var(--lh-tag-fontSize-medium);
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Loading 加载 */
+.sim-loading {
+  display: inline-block;
+  width: var(--lh-loading-size-medium);
+  height: var(--lh-loading-size-medium);
+  border: var(--lh-loading-strokeWidth) solid var(--lh-color-primary-default);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: sim-loading-spin 0.9s linear infinite;
+}
+.sim-loading--small { width: var(--lh-loading-size-small); height: var(--lh-loading-size-small); }
+.sim-loading--large { width: var(--lh-loading-size-large); height: var(--lh-loading-size-large); }
+.sim-loading--success { border-color: var(--lh-color-success-default); border-right-color: transparent; }
+.sim-loading--warning { border-color: var(--lh-color-warning-default); border-right-color: transparent; }
+.sim-loading--danger { border-color: var(--lh-color-danger-default); border-right-color: transparent; }
+.sim-loading--info { border-color: var(--lh-color-info-default); border-right-color: transparent; }
+@keyframes sim-loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Cell 单元格 */
+.sim-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--lh-cell-gap);
+  width: 100%;
+  padding: var(--lh-cell-paddingVertical) var(--lh-cell-paddingHorizontal);
+  background: var(--lh-color-background-default);
+  position: relative;
+}
+.sim-cell + .sim-cell { border-top: var(--lh-cell-borderWidth) solid var(--lh-color-border-lighter); }
+.sim-cell--borderless + .sim-cell--borderless { border-top: none; }
+.sim-cell__main { display: flex; flex-direction: column; gap: var(--lh-cell-gap); flex: 1; min-width: 0; }
+.sim-cell__title {
+  display: flex;
+  align-items: center;
+  gap: var(--lh-spacing-xs);
+  font-size: var(--lh-cell-fontSizeTitle);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-cell__label {
+  font-size: var(--lh-cell-fontSizeLabel);
+  color: var(--lh-color-text-secondary);
+}
+.sim-cell__value {
+  font-size: var(--lh-cell-fontSizeValue);
+  color: var(--lh-color-text-secondary);
+}
+.sim-cell__required { color: var(--lh-color-danger-default); }
+.sim-cell__arrow { color: var(--lh-color-text-secondary); font-size: var(--lh-cell-fontSizeLabel); }
+.sim-cell__icon { color: var(--lh-color-text-primary); }
+
+/* Checkbox 复选框 */
+.sim-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lh-checkbox-gap);
+  cursor: pointer;
+  font-size: var(--lh-cell-fontSizeTitle);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-checkbox__box {
+  width: var(--lh-checkbox-size-medium);
+  height: var(--lh-checkbox-size-medium);
+  border: var(--lh-checkbox-borderWidth) solid var(--lh-color-border-base);
+  border-radius: var(--lh-checkbox-borderRadius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sim-checkbox__box--small { width: var(--lh-checkbox-size-small); height: var(--lh-checkbox-size-small); }
+.sim-checkbox__box--large { width: var(--lh-checkbox-size-large); height: var(--lh-checkbox-size-large); }
+.sim-checkbox--checked .sim-checkbox__box {
+  background: var(--lh-color-primary-default);
+  border-color: transparent;
+  color: var(--lh-color-onPrimary);
+}
+.sim-checkbox--indeterminate .sim-checkbox__box {
+  background: var(--lh-color-primary-default);
+  border-color: transparent;
+}
+.sim-checkbox--disabled { color: var(--lh-color-text-disabled); cursor: not-allowed; }
+.sim-checkbox--disabled .sim-checkbox__box {
+  background: var(--lh-color-disabled-bg);
+  border-color: var(--lh-color-disabled-border);
+  color: var(--lh-color-disabled-text);
+}
+.sim-checkbox__check { color: inherit; }
+.sim-checkbox__dash {
+  width: calc(var(--lh-checkbox-size-medium) * 0.5);
+  height: var(--lh-checkbox-checkWidth);
+  background: var(--lh-color-onPrimary);
+  border-radius: var(--lh-checkbox-checkWidth);
+}
+.sim-checkbox__dash--small { width: calc(var(--lh-checkbox-size-small) * 0.5); }
+.sim-checkbox__dash--large { width: calc(var(--lh-checkbox-size-large) * 0.5); }
+
+/* Radio 单选框 */
+.sim-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lh-radio-gap);
+  cursor: pointer;
+  font-size: var(--lh-cell-fontSizeTitle);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-radio__ring {
+  width: var(--lh-radio-size-medium);
+  height: var(--lh-radio-size-medium);
+  border: var(--lh-radio-ringWidth) solid var(--lh-color-border-base);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sim-radio__ring--small { width: var(--lh-radio-size-small); height: var(--lh-radio-size-small); }
+.sim-radio__ring--large { width: var(--lh-radio-size-large); height: var(--lh-radio-size-large); }
+.sim-radio--checked .sim-radio__ring { border-color: var(--lh-color-primary-default); }
+.sim-radio__dot {
+  width: calc(var(--lh-radio-size-medium) * 0.5);
+  height: calc(var(--lh-radio-size-medium) * 0.5);
+  background: var(--lh-color-primary-default);
+  border-radius: 50%;
+}
+.sim-radio__dot--small { width: calc(var(--lh-radio-size-small) * 0.5); height: calc(var(--lh-radio-size-small) * 0.5); }
+.sim-radio__dot--large { width: calc(var(--lh-radio-size-large) * 0.5); height: calc(var(--lh-radio-size-large) * 0.5); }
+.sim-radio--disabled { color: var(--lh-color-text-disabled); cursor: not-allowed; }
+.sim-radio--disabled .sim-radio__ring { border-color: var(--lh-color-disabled-border); }
+.sim-radio--disabled .sim-radio__dot { background: var(--lh-color-disabled-text); }
+
+/* Switch 开关 */
+.sim-switch {
+  display: inline-flex;
+  align-items: center;
+  width: var(--lh-switch-width-medium);
+  height: var(--lh-switch-height-medium);
+  border-radius: calc(var(--lh-switch-height-medium) / 2);
+  background: var(--lh-color-border-base);
+  padding: var(--lh-switch-gap);
+  cursor: pointer;
+  transition: background var(--lh-motion-duration-base);
+  flex-shrink: 0;
+}
+.sim-switch--small { width: var(--lh-switch-width-small); height: var(--lh-switch-height-small); border-radius: calc(var(--lh-switch-height-small) / 2); }
+.sim-switch--large { width: var(--lh-switch-width-large); height: var(--lh-switch-height-large); border-radius: calc(var(--lh-switch-height-large) / 2); }
+.sim-switch--on { background: var(--lh-color-primary-default); }
+.sim-switch--disabled { background: var(--lh-color-disabled-bg); cursor: not-allowed; }
+.sim-switch__thumb {
+  width: calc(var(--lh-switch-height-medium) - var(--lh-switch-gap) * 2);
+  height: calc(var(--lh-switch-height-medium) - var(--lh-switch-gap) * 2);
+  border-radius: 50%;
+  background: var(--lh-color-onPrimary);
+  transition: transform var(--lh-motion-duration-base);
+}
+.sim-switch--small .sim-switch__thumb { width: calc(var(--lh-switch-height-small) - var(--lh-switch-gap) * 2); height: calc(var(--lh-switch-height-small) - var(--lh-switch-gap) * 2); }
+.sim-switch--large .sim-switch__thumb { width: calc(var(--lh-switch-height-large) - var(--lh-switch-gap) * 2); height: calc(var(--lh-switch-height-large) - var(--lh-switch-gap) * 2); }
+.sim-switch--disabled .sim-switch__thumb { background: var(--lh-color-disabled-text); }
+.sim-switch--on .sim-switch__thumb { transform: translateX(calc(var(--lh-switch-width-medium) - var(--lh-switch-height-medium))); }
+.sim-switch--on.sim-switch--small .sim-switch__thumb { transform: translateX(calc(var(--lh-switch-width-small) - var(--lh-switch-height-small))); }
+.sim-switch--on.sim-switch--large .sim-switch__thumb { transform: translateX(calc(var(--lh-switch-width-large) - var(--lh-switch-height-large))); }
+
+/* Input 输入框 */
+.sim-input {
+  display: flex;
+  align-items: center;
+  gap: var(--lh-spacing-xs);
+  height: var(--lh-input-height-medium);
+  padding: 0 var(--lh-input-paddingHorizontal-medium);
+  background: var(--lh-color-background-default);
+  border: var(--lh-input-borderWidth) solid var(--lh-color-border-base);
+  border-radius: var(--lh-input-borderRadius);
+}
+.sim-input--small { height: var(--lh-input-height-small); padding: 0 var(--lh-input-paddingHorizontal-small); }
+.sim-input--large { height: var(--lh-input-height-large); padding: 0 var(--lh-input-paddingHorizontal-large); }
+.sim-input--focus { border-color: var(--lh-color-focus); border-width: var(--lh-input-focusRingWidth); }
+.sim-input--disabled { background: var(--lh-color-disabled-bg); border-color: var(--lh-color-disabled-border); }
+.sim-input__field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--lh-input-fontSize-medium);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-input--small .sim-input__field { font-size: var(--lh-input-fontSize-small); }
+.sim-input--large .sim-input__field { font-size: var(--lh-input-fontSize-large); }
+.sim-input__field::placeholder { color: var(--lh-color-text-placeholder); }
+.sim-input--disabled .sim-input__field { color: var(--lh-color-disabled-text); }
+.sim-input__clear {
+  width: var(--lh-input-clearIconSize);
+  height: var(--lh-input-clearIconSize);
+  color: var(--lh-color-text-placeholder);
+  cursor: pointer;
+}
+
+/* Textarea 多行输入框 */
+.sim-textarea {
+  position: relative;
+  padding: var(--lh-textarea-paddingVertical) var(--lh-textarea-paddingHorizontal);
+  background: var(--lh-color-background-default);
+  border: var(--lh-textarea-borderWidth) solid var(--lh-color-border-base);
+  border-radius: var(--lh-textarea-borderRadius);
+}
+.sim-textarea--focus { border-color: var(--lh-color-focus); border-width: var(--lh-textarea-focusRingWidth); }
+.sim-textarea--disabled { background: var(--lh-color-disabled-bg); border-color: var(--lh-color-disabled-border); }
+.sim-textarea__field {
+  width: 100%;
+  min-height: var(--lh-textarea-minHeight);
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: vertical;
+  font-size: var(--lh-textarea-fontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-textarea__field::placeholder { color: var(--lh-color-text-placeholder); }
+.sim-textarea--disabled .sim-textarea__field { color: var(--lh-color-disabled-text); }
+.sim-textarea__count {
+  position: absolute;
+  right: var(--lh-textarea-paddingHorizontal);
+  bottom: var(--lh-spacing-xs);
+  font-size: var(--lh-textarea-countFontSize);
+  color: var(--lh-color-text-placeholder);
+}
+
+/* Dialog 对话框 */
+.sim-dialog-mask {
+  position: absolute;
+  inset: 0;
+  background: var(--lh-color-background-overlay);
+}
+.sim-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--lh-dialog-width);
+  max-width: 80%;
+  padding: var(--lh-dialog-paddingVertical) var(--lh-dialog-paddingHorizontal);
+  background: var(--lh-color-background-default);
+  border-radius: var(--lh-dialog-borderRadius);
+  box-shadow: var(--lh-shadow-base);
+}
+.sim-dialog__title {
+  font-size: var(--lh-dialog-titleFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  font-weight: var(--lh-typography-fontWeight-bold);
+  color: var(--lh-color-text-primary);
+}
+.sim-dialog__content {
+  margin-top: var(--lh-dialog-gap);
+  font-size: var(--lh-dialog-contentFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-regular);
+}
+.sim-dialog__actions {
+  display: flex;
+  gap: var(--lh-dialog-gap);
+  margin-top: var(--lh-dialog-gap);
+}
+.sim-dialog__actions .sim-btn { flex: 1; }
+
+/* Toast 轻提示 */
+.sim-toast {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lh-toast-gap);
+  max-width: 80%;
+  padding: var(--lh-toast-paddingVertical) var(--lh-toast-paddingHorizontal);
+  background: var(--lh-color-ink);
+  border-radius: var(--lh-toast-borderRadius);
+  font-size: var(--lh-toast-fontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-onPrimary);
+  z-index: var(--lh-zIndex-toast);
+}
+.sim-toast--top { top: var(--lh-spacing-xl); }
+.sim-toast--center { top: 50%; transform: translate(-50%, -50%); }
+.sim-toast--bottom { bottom: var(--lh-spacing-xl); }
+.sim-toast__dot {
+  width: var(--lh-toast-fontSize);
+  height: var(--lh-toast-fontSize);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sim-toast__dot--success { background: var(--lh-color-success-default); }
+.sim-toast__dot--warning { background: var(--lh-color-warning-default); }
+.sim-toast__dot--danger { background: var(--lh-color-danger-default); }
+.sim-toast__dot--info { background: var(--lh-color-info-default); }
+
+/* Picker 选择器 */
+.sim-picker-mask {
+  position: absolute;
+  inset: 0;
+  background: var(--lh-color-background-overlay);
+}
+.sim-picker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--lh-picker-height);
+  background: var(--lh-color-background-default);
+  border-radius: var(--lh-picker-borderRadius) var(--lh-picker-borderRadius) 0 0;
+  display: flex;
+  flex-direction: column;
+}
+.sim-picker__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--lh-picker-toolbarHeight);
+  padding: 0 var(--lh-picker-itemHeight);
+}
+.sim-picker__btn {
+  font-size: var(--lh-picker-itemFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+  cursor: pointer;
+}
+.sim-picker__btn--confirm { color: var(--lh-color-primary-default); font-weight: var(--lh-typography-fontWeight-bold); }
+.sim-picker__title {
+  font-size: var(--lh-picker-itemFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  font-weight: var(--lh-typography-fontWeight-bold);
+  color: var(--lh-color-text-primary);
+}
+.sim-picker__wheel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sim-picker__indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--lh-picker-itemHeight);
+  border-top: var(--lh-cell-borderWidth) solid var(--lh-color-border-lighter);
+  border-bottom: var(--lh-cell-borderWidth) solid var(--lh-color-border-lighter);
+  pointer-events: none;
+}
+.sim-picker__item {
+  height: var(--lh-picker-itemHeight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--lh-picker-itemFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+}
+.sim-picker__item--selected { color: var(--lh-color-primary-default); }
+
+/* Navbar 导航栏 */
+.sim-navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--lh-navbar-height);
+  padding: 0 var(--lh-navbar-paddingHorizontal);
+  background: var(--lh-color-background-default);
+  position: relative;
+}
+.sim-navbar--bordered { border-bottom: var(--lh-navbar-borderWidth) solid var(--lh-color-border-lighter); }
+.sim-navbar__side {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lh-spacing-xs);
+  font-size: var(--lh-navbar-titleFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  color: var(--lh-color-text-primary);
+  cursor: pointer;
+  z-index: 1;
+}
+.sim-navbar__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--lh-navbar-titleFontSize);
+  font-family: var(--lh-typography-fontFamily);
+  font-weight: var(--lh-typography-fontWeight-bold);
+  color: var(--lh-color-text-primary);
+}
+.sim-navbar__icon {
+  width: var(--lh-navbar-iconSize);
+  height: var(--lh-navbar-iconSize);
+  color: var(--lh-color-text-primary);
 }

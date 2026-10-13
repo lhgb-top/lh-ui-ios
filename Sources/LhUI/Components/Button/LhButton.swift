@@ -68,7 +68,7 @@ public struct LhButton: View {
       colors: colors
     )
 
-    HStack(spacing: LhTokens.Spacing.xs) {
+    return HStack(spacing: LhTokens.Spacing.xs) {
       if loading {
         ProgressView()
           .frame(width: appearance.iconSize, height: appearance.iconSize)
@@ -100,10 +100,10 @@ public struct LhButton: View {
       RoundedRectangle(cornerRadius: appearance.borderRadius)
         .stroke(appearance.borderColor, lineWidth: appearance.borderWidth)
     )
-    // SwiftUI 阴影：LhShadow 载体（color/opacity/radius/x/y）
+    // SwiftUI 阴影：LhShadow 载体（生成的 color 已内联 opacity，radius/x/y）
     .shadow(
       color: appearance.enabled
-        ? LhTokens.Shadow.lighter.color.opacity(LhTokens.Shadow.lighter.opacity)
+        ? LhTokens.Shadow.lighter.color
         : .clear,
       radius: LhTokens.Shadow.lighter.radius,
       x: LhTokens.Shadow.lighter.x,

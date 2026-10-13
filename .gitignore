@@ -4,6 +4,12 @@ Sources/LhUITokens/
 # 文档模拟器令牌（由 scripts/gen-sim-tokens.mjs 生成）
 docs/.vitepress/theme/sim-tokens.css
 
+# 文档站构建产物与真渲染对照图拷贝（由 scripts/copy-true-shots.mjs 生成）
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/true/
+# 注：仓根 test-shots/ 是真机/模拟器实拍源资产，应入库，不忽略
+
 # Swift 构建产物
 .build/
 *.xcodeproj
@@ -16,3 +22,6 @@ node_modules/
 # macOS / IDE
 .DS_Store
 .swiftpm/
+
+# ZCode 工具目录（plan 文件等，非仓库内容）
+.zcode/

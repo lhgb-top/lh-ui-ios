@@ -14,7 +14,35 @@ const hostname = (env.DOCS_HOSTNAME || 'https://www.lhgb.top').replace(/\/$/, ''
 const componentGroups = [
   {
     text: '基础组件',
-    items: [{ text: 'Button 按钮', slug: 'button' }],
+    items: [
+      { text: 'Button 按钮', slug: 'button' },
+      { text: 'Icon 图标', slug: 'icon' },
+      { text: 'Tag 标签', slug: 'tag' },
+      { text: 'Loading 加载', slug: 'loading' },
+      { text: 'Cell 单元格', slug: 'cell' },
+    ],
+  },
+  {
+    text: '表单组件',
+    items: [
+      { text: 'Checkbox 复选框', slug: 'checkbox' },
+      { text: 'Radio 单选框', slug: 'radio' },
+      { text: 'Switch 开关', slug: 'switch' },
+      { text: 'Input 输入框', slug: 'input' },
+      { text: 'Textarea 多行输入框', slug: 'textarea' },
+    ],
+  },
+  {
+    text: '反馈组件',
+    items: [
+      { text: 'Dialog 对话框', slug: 'dialog' },
+      { text: 'Toast 轻提示', slug: 'toast' },
+      { text: 'Picker 选择器', slug: 'picker' },
+    ],
+  },
+  {
+    text: '导航组件',
+    items: [{ text: 'Navbar 导航栏', slug: 'navbar' }],
   },
 ]
 
@@ -52,6 +80,13 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'lh-ui-ios' }],
   ],
 
+  // search 必须放在顶层 themeConfig：VitePress 的 __VP_LOCAL_SEARCH__ 构建期常量
+  // 只读 site.themeConfig（= userConfig.themeConfig），不合并 locales[*].themeConfig，
+  // 放在 locales 里会被求值为 false，导航栏搜索框渲染成空壳。
+  themeConfig: {
+    search: { provider: 'local' },
+  },
+
   locales: {
     root: {
       label: '简体中文',
@@ -70,11 +105,10 @@ export default defineConfig({
           '/components/': buildSidebar('/components', componentGroups),
         },
         outline: { level: [2, 3], label: '本页目录' },
-        socialLinks: [{ icon: 'github', link: 'https://github.com/lhgb/lh-ui' }],
-        search: { provider: 'local' },
+        socialLinks: [{ icon: 'github', link: 'https://github.com/lhgb-top/lh-ui-ios' }],
         footer: {
           message: 'lh-ui 原生血脉 · iOS 端（Swift + SwiftUI）',
-          copyright: 'MIT License',
+          copyright: 'Apache-2.0 License',
         },
       },
     },
