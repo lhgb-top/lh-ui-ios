@@ -44,8 +44,8 @@ struct IconDoc {
         ],
         preview: IconPreviews.iconNames,
         code: [
-          "LhIcon(name: \"search\", size: .large, tone: .secondary) {",
-          "  // onClick",
+          "LhIcon(name: \"search\", lhSize: .large, tone: .secondary) {",
+          "  // lhOnClick",
           "}",
         ],
         tables: [
@@ -70,9 +70,9 @@ struct IconDoc {
                 headers: ["属性", "说明", "类型", "默认值"],
                 rows: [
                   DocRow(cells: ["`name`", "图标逻辑名（经 `LhIconMap` 映射 SF Symbol）", "`String`", "—"]),
-                  DocRow(cells: ["`size`", "图标尺寸，映射到尺寸令牌", "`LhIconSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "图标尺寸，映射到尺寸令牌", "`LhIconSize`", "`.medium`"]),
                   DocRow(cells: ["`tone`", "图标色调，映射到文字/语义色令牌", "`LhIconTone`", "`.default`"]),
-                  DocRow(cells: ["`onClick`", "点击回调；未传则不响应点击", "`(() -> Void)?`", "`nil`"]),
+                  DocRow(cells: ["`lhOnClick`", "点击回调；未传则不响应点击", "`(() -> Void)?`", "`nil`"]),
                 ]),
               DocTable(
                 title: "LhIconSize",
@@ -127,7 +127,7 @@ struct IconDoc {
                 title: "",
                 headers: ["case id", "断言", "本地测试"],
                 rows: [
-                  DocRow(cells: ["`click-emits-onclick`", "点击触发 `onClick` 一次", "View 层 `onTapGesture`（手势断言需模拟器，见 #Preview）"]),
+                  DocRow(cells: ["`click-emits-onclick`", "点击触发 `lhOnClick` 一次", "View 层 `onTapGesture`（手势断言需模拟器，见 #Preview）"]),
                   DocRow(cells: ["`default-tone-uses-text-primary`", "默认色调取主要文字色", "`testDefaultToneUsesTextPrimary`"]),
                   DocRow(cells: ["`primary-tone-uses-primary-token`", "主色调取主色令牌", "`testPrimaryToneUsesPrimaryToken`"]),
                   DocRow(cells: ["`small-size-uses-small-token`", "小号取 small 尺寸令牌", "`testSmallSizeUsesSmallToken`"]),

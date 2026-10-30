@@ -40,8 +40,8 @@ enum TagPreviews {
       PreviewLayout.column {
         ForEach(LhTagSize.allCases, id: \.self) { size in
           PreviewLayout.row {
-            LhTag("\(size.rawValue)", type: .primary, size: size)
-            LhTag("\(size.rawValue)", type: .primary, size: size, round: true)
+            LhTag("\(size.rawValue)", type: .primary, lhSize: size)
+            LhTag("\(size.rawValue)", type: .primary, lhSize: size, round: true)
           }
         }
       }

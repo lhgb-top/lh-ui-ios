@@ -36,7 +36,7 @@ public enum LhRadioStyle {
   public static func resolveAppearance(
     checked: Bool,
     disabled: Bool,
-    size: LhRadioSize,
+    lhSize: LhRadioSize,
     colors: LhColors
   ) -> LhRadioAppearance {
     let enabled = !disabled
@@ -59,7 +59,7 @@ public enum LhRadioStyle {
     }
 
     let dimension: CGFloat
-    switch size {
+    switch lhSize {
     case .small: dimension = LhTokens.Radio.Size.small
     case .medium: dimension = LhTokens.Radio.Size.medium
     case .large: dimension = LhTokens.Radio.Size.large
@@ -94,7 +94,7 @@ public struct LhRadio: View {
   /// 单选值（组内标识，组件本身不含组逻辑）
   public var value: String = ""
   /// 圆环尺寸，映射到 radio.size.* 令牌
-  public var size: LhRadioSize = .medium
+  public var lhSize: LhRadioSize = .medium
   /// 选中态变化回调，携带新选中态（仅可能为 true）
   public var onChange: ((Bool) -> Void)? = nil
 
@@ -105,20 +105,20 @@ public struct LhRadio: View {
     disabled: Bool = false,
     label: String = "",
     value: String = "",
-    size: LhRadioSize = .medium,
+    lhSize: LhRadioSize = .medium,
     onChange: ((Bool) -> Void)? = nil
   ) {
     self._checked = checked
     self.disabled = disabled
     self.label = label
     self.value = value
-    self.size = size
+    self.lhSize = lhSize
     self.onChange = onChange
   }
 
   public var body: some View {
     let appearance = LhRadioStyle.resolveAppearance(
-      checked: checked, disabled: disabled, size: size, colors: colors
+      checked: checked, disabled: disabled, lhSize: lhSize, colors: colors
     )
 
     return HStack(spacing: appearance.gap) {

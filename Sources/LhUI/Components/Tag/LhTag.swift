@@ -46,7 +46,7 @@ public struct LhTagAppearance: Equatable {
 public enum LhTagStyle {
   public static func resolveAppearance(
     type: LhTagType,
-    size: LhTagSize,
+    lhSize: LhTagSize,
     plain: Bool,
     round: Bool,
     colors: LhColors
@@ -55,7 +55,7 @@ public enum LhTagStyle {
     let height: CGFloat
     let paddingHorizontal: CGFloat
     let fontSize: CGFloat
-    switch size {
+    switch lhSize {
     case .small:
       height = LhTokens.Tag.Height.small
       paddingHorizontal = LhTokens.Tag.PaddingHorizontal.small
@@ -158,7 +158,7 @@ public struct LhTag: View {
   /// 语义类型，决定底色、文字色与描边色
   public var type: LhTagType = .default
   /// 标签尺寸，映射到 tag.height / paddingHorizontal / fontSize 令牌
-  public var size: LhTagSize = .medium
+  public var lhSize: LhTagSize = .medium
   /// 是否为浅底描边形态
   public var plain: Bool = false
   /// 是否为胶囊形态（圆角取高度一半）
@@ -172,7 +172,7 @@ public struct LhTag: View {
 
   public init(
     type: LhTagType = .default,
-    size: LhTagSize = .medium,
+    lhSize: LhTagSize = .medium,
     plain: Bool = false,
     round: Bool = false,
     closable: Bool = false,
@@ -180,7 +180,7 @@ public struct LhTag: View {
     label: Text
   ) {
     self.type = type
-    self.size = size
+    self.lhSize = lhSize
     self.plain = plain
     self.round = round
     self.closable = closable
@@ -192,21 +192,21 @@ public struct LhTag: View {
   public init(
     _ text: some StringProtocol,
     type: LhTagType = .default,
-    size: LhTagSize = .medium,
+    lhSize: LhTagSize = .medium,
     plain: Bool = false,
     round: Bool = false,
     closable: Bool = false,
     onClose: (() -> Void)? = nil
   ) {
     self.init(
-      type: type, size: size, plain: plain, round: round, closable: closable,
+      type: type, lhSize: lhSize, plain: plain, round: round, closable: closable,
       onClose: onClose, label: Text(text)
     )
   }
 
   public var body: some View {
     let appearance = LhTagStyle.resolveAppearance(
-      type: type, size: size, plain: plain, round: round, colors: colors
+      type: type, lhSize: lhSize, plain: plain, round: round, colors: colors
     )
 
     return HStack(spacing: appearance.closeGap) {

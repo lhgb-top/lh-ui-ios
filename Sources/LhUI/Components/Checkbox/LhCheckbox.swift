@@ -50,7 +50,7 @@ public enum LhCheckboxStyle {
     checked: Bool,
     indeterminate: Bool,
     disabled: Bool,
-    size: LhCheckboxSize,
+    lhSize: LhCheckboxSize,
     colors: LhColors
   ) -> LhCheckboxAppearance {
     let enabled = !disabled
@@ -89,7 +89,7 @@ public enum LhCheckboxStyle {
 
     // size → 尺寸令牌
     let dimension: CGFloat
-    switch size {
+    switch lhSize {
     case .small: dimension = LhTokens.Checkbox.Size.small
     case .medium: dimension = LhTokens.Checkbox.Size.medium
     case .large: dimension = LhTokens.Checkbox.Size.large
@@ -126,7 +126,7 @@ public struct LhCheckbox: View {
   /// 是否禁用；禁用时不响应点击且呈现禁用样式
   public var disabled: Bool = false
   /// 方框尺寸，映射到 checkbox.size.* 令牌
-  public var size: LhCheckboxSize = .medium
+  public var lhSize: LhCheckboxSize = .medium
   /// 文字标签（绘制在方框右侧）
   public var label: String = ""
   /// 选中态变化回调，携带新选中态
@@ -138,14 +138,14 @@ public struct LhCheckbox: View {
     checked: Binding<Bool>,
     indeterminate: Bool = false,
     disabled: Bool = false,
-    size: LhCheckboxSize = .medium,
+    lhSize: LhCheckboxSize = .medium,
     label: String = "",
     onChange: ((Bool) -> Void)? = nil
   ) {
     self._checked = checked
     self.indeterminate = indeterminate
     self.disabled = disabled
-    self.size = size
+    self.lhSize = lhSize
     self.label = label
     self.onChange = onChange
   }
@@ -153,7 +153,7 @@ public struct LhCheckbox: View {
   public var body: some View {
     let appearance = LhCheckboxStyle.resolveAppearance(
       checked: checked, indeterminate: indeterminate, disabled: disabled,
-      size: size, colors: colors
+      lhSize: lhSize, colors: colors
     )
 
     return HStack(spacing: appearance.gap) {

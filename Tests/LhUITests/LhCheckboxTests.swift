@@ -12,12 +12,12 @@ final class LhCheckboxTests: XCTestCase {
     checked: Bool = false,
     indeterminate: Bool = false,
     disabled: Bool = false,
-    size: LhCheckboxSize = .medium,
+    lhSize: LhCheckboxSize = .medium,
     colors: LhColors
   ) -> LhCheckboxAppearance {
     LhCheckboxStyle.resolveAppearance(
       checked: checked, indeterminate: indeterminate, disabled: disabled,
-      size: size, colors: colors
+      lhSize: lhSize, colors: colors
     )
   }
 
@@ -64,9 +64,9 @@ final class LhCheckboxTests: XCTestCase {
 
   /// 尺寸令牌映射（spec：size 映射到 checkbox.size.*）
   func testSizeUsesSizeTokens() {
-    XCTAssertEqual(resolve(size: .small, colors: light).size, LhTokens.Checkbox.Size.small)
-    XCTAssertEqual(resolve(size: .medium, colors: light).size, LhTokens.Checkbox.Size.medium)
-    XCTAssertEqual(resolve(size: .large, colors: light).size, LhTokens.Checkbox.Size.large)
+    XCTAssertEqual(resolve(lhSize: .small, colors: light).size, LhTokens.Checkbox.Size.small)
+    XCTAssertEqual(resolve(lhSize: .medium, colors: light).size, LhTokens.Checkbox.Size.medium)
+    XCTAssertEqual(resolve(lhSize: .large, colors: light).size, LhTokens.Checkbox.Size.large)
     XCTAssertNotEqual(
       LhTokens.Checkbox.Size.small, LhTokens.Checkbox.Size.large,
       "small 与 large 尺寸必须不同，否则用例无意义"
@@ -99,7 +99,7 @@ final class LhCheckboxTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    XCTAssertEqual(resolve(size: .large, colors: light).size, resolve(size: .large, colors: dark).size)
+    XCTAssertEqual(resolve(lhSize: .large, colors: light).size, resolve(lhSize: .large, colors: dark).size)
   }
 
   /// View 层受控构造与渲染佐证

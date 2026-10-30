@@ -49,7 +49,7 @@ public struct LhInputAppearance: Equatable {
 public enum LhInputStyle {
   public static func resolveAppearance(
     type: LhInputType,
-    size: LhInputSize,
+    lhSize: LhInputSize,
     disabled: Bool,
     readonly: Bool,
     clearable: Bool,
@@ -62,7 +62,7 @@ public enum LhInputStyle {
     let height: CGFloat
     let paddingHorizontal: CGFloat
     let fontSize: CGFloat
-    switch size {
+    switch lhSize {
     case .small:
       height = LhTokens.Input.Height.small
       paddingHorizontal = LhTokens.Input.PaddingHorizontal.small
@@ -128,7 +128,7 @@ public struct LhInput: View {
   /// 输入类型；password 时以圆点掩码显示
   public var type: LhInputType = .text
   /// 输入框尺寸，映射到 input.height / paddingHorizontal / fontSize 令牌
-  public var size: LhInputSize = .medium
+  public var lhSize: LhInputSize = .medium
   /// 是否禁用；禁用时不响应输入、不触发 onValueChange 且呈现禁用样式
   public var disabled: Bool = false
   /// 是否只读；只读时可聚焦但不接受输入、不触发 onValueChange
@@ -140,9 +140,9 @@ public struct LhInput: View {
   /// 文本变化回调，携带变更后的文本
   public var onValueChange: ((String) -> Void)? = nil
   /// 获得焦点回调
-  public var onFocus: (() -> Void)? = nil
+  public var lhOnFocus: (() -> Void)? = nil
   /// 失去焦点回调
-  public var onBlur: (() -> Void)? = nil
+  public var lhOnBlur: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
   @FocusState private var focused: Bool
@@ -151,31 +151,31 @@ public struct LhInput: View {
     value: Binding<String>,
     placeholder: String = "",
     type: LhInputType = .text,
-    size: LhInputSize = .medium,
+    lhSize: LhInputSize = .medium,
     disabled: Bool = false,
     readonly: Bool = false,
     clearable: Bool = false,
     maxlength: Int? = nil,
     onValueChange: ((String) -> Void)? = nil,
-    onFocus: (() -> Void)? = nil,
-    onBlur: (() -> Void)? = nil
+    lhOnFocus: (() -> Void)? = nil,
+    lhOnBlur: (() -> Void)? = nil
   ) {
     self._value = value
     self.placeholder = placeholder
     self.type = type
-    self.size = size
+    self.lhSize = lhSize
     self.disabled = disabled
     self.readonly = readonly
     self.clearable = clearable
     self.maxlength = maxlength
     self.onValueChange = onValueChange
-    self.onFocus = onFocus
-    self.onBlur = onBlur
+    self.lhOnFocus = lhOnFocus
+    self.lhOnBlur = lhOnBlur
   }
 
   public var body: some View {
     let appearance = LhInputStyle.resolveAppearance(
-      type: type, size: size, disabled: disabled, readonly: readonly,
+      type: type, lhSize: lhSize, disabled: disabled, readonly: readonly,
       clearable: clearable, hasValue: !value.isEmpty, focused: focused, colors: colors
     )
 
@@ -219,9 +219,9 @@ public struct LhInput: View {
     )
     .onChange(of: focused) { isFocused in
       if isFocused {
-        onFocus?()
+        lhOnFocus?()
       } else {
-        onBlur?()
+        lhOnBlur?()
       }
     }
     .accessibilityElement(children: .combine)

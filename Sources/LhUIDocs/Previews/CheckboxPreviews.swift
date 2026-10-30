@@ -25,7 +25,7 @@ enum CheckboxPreviews {
       StatefulPreview(initial: [true, false, true]) { $checked in
         PreviewLayout.column {
           ForEach(Array(LhCheckboxSize.allCases.enumerated()), id: \.offset) { index, size in
-            LhCheckbox(checked: $checked.element(index), size: size, label: "\(size.rawValue) 号") { value in
+            LhCheckbox(checked: $checked.element(index), lhSize: size, label: "\(size.rawValue) 号") { value in
               scope.showToast("\(size.rawValue) 号：\(value ? "勾选了" : "取消了勾选")")
             }
           }

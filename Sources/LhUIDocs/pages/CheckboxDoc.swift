@@ -68,7 +68,7 @@ struct CheckboxDoc {
                   DocRow(cells: ["`checked`", "勾选状态（受控双向绑定）", "`Bool`", "—"]),
                   DocRow(cells: ["`indeterminate`", "是否不确定态（显示横杠，点击后变勾选）", "`Bool`", "`false`"]),
                   DocRow(cells: ["`disabled`", "是否禁用（不触发 onChange）", "`Bool`", "`false`"]),
-                  DocRow(cells: ["`size`", "复选框尺寸，映射到尺寸令牌", "`LhCheckboxSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "复选框尺寸，映射到尺寸令牌", "`LhCheckboxSize`", "`.medium`"]),
                   DocRow(cells: ["`label`", "文字标签", "`String`", "`\"\"`"]),
                   DocRow(cells: ["`onChange`", "状态变化回调，payload 为新值", "`((Bool) -> Void)?`", "`nil`"]),
                 ]),

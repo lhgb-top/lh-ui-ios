@@ -42,7 +42,7 @@ enum DialogPreviews {
           PreviewLayout.row {
             ForEach(LhDialogType.allCases, id: \.self) { type in
               LhButton(
-                onClick: {
+                lhOnClick: {
                   state.wrappedValue.1 = type
                   state.wrappedValue.0 = true
                 },
@@ -67,7 +67,7 @@ enum DialogPreviews {
       StatefulPreview(initial: false) { $visible in
         ZStack {
           PreviewLayout.row {
-            LhButton(onClick: { visible.wrappedValue = true }, type: .primary, text: "弹出对话框")
+            LhButton(lhOnClick: { visible.wrappedValue = true }, type: .primary, text: "弹出对话框")
           }
           LhDialog(
             visible: $visible,

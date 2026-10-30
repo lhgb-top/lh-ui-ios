@@ -13,11 +13,11 @@ final class LhIconTests: XCTestCase {
   private let dark = DarkLhColors
 
   private func resolve(
-    size: LhIconSize = .medium,
+    lhSize: LhIconSize = .medium,
     tone: LhIconTone = .default,
     colors: LhColors
   ) -> LhIconAppearance {
-    LhIconStyle.resolveAppearance(size: size, tone: tone, colors: colors)
+    LhIconStyle.resolveAppearance(lhSize: lhSize, tone: tone, colors: colors)
   }
 
   // case: default-tone-uses-text-primary
@@ -34,7 +34,7 @@ final class LhIconTests: XCTestCase {
 
   // case: small-size-uses-small-token（并反向确认 large 不同）
   func testSmallSizeUsesSmallToken() {
-    let a = resolve(size: .small, colors: light)
+    let a = resolve(lhSize: .small, colors: light)
     XCTAssertEqual(a.size, LhTokens.Icon.Size.small)
     XCTAssertNotEqual(
       LhTokens.Icon.Size.small, LhTokens.Icon.Size.large,
@@ -56,7 +56,7 @@ final class LhIconTests: XCTestCase {
 
   // case: click-emits-onclick —— 可点击图标的 View 层佐证
   func testIconViewInitAndRender() {
-    let icon = LhIcon(name: "star", size: .large, tone: .primary) {}
+    let icon = LhIcon(name: "star", lhSize: .large, tone: .primary) {}
     XCTAssertNotNil(icon.body)
   }
 
@@ -68,6 +68,6 @@ final class LhIconTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    XCTAssertEqual(resolve(size: .large, colors: light).size, resolve(size: .large, colors: dark).size)
+    XCTAssertEqual(resolve(lhSize: .large, colors: light).size, resolve(lhSize: .large, colors: dark).size)
   }
 }

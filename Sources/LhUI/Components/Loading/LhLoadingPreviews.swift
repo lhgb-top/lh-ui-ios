@@ -6,9 +6,9 @@ import LhUITokens
 #Preview("尺寸：small / medium / large") {
   LhTheme {
     HStack(spacing: LhTokens.Spacing.xl) {
-      LhLoading(size: .small)
-      LhLoading(size: .medium)
-      LhLoading(size: .large)
+      LhLoading(lhSize: .small)
+      LhLoading(lhSize: .medium)
+      LhLoading(lhSize: .large)
     }
     .padding(LhTokens.Spacing.base)
   }

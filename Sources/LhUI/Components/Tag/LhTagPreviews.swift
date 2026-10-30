@@ -36,9 +36,9 @@ import LhUITokens
   LhTheme {
     VStack(spacing: LhTokens.Spacing.sm) {
       HStack(spacing: LhTokens.Spacing.sm) {
-        LhTag("小", size: .small)
-        LhTag("中", size: .medium)
-        LhTag("大", size: .large)
+        LhTag("小", lhSize: .small)
+        LhTag("中", lhSize: .medium)
+        LhTag("大", lhSize: .large)
       }
       HStack(spacing: LhTokens.Spacing.sm) {
         LhTag("胶囊", round: true)

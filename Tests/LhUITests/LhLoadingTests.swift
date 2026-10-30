@@ -9,11 +9,11 @@ final class LhLoadingTests: XCTestCase {
   private let dark = DarkLhColors
 
   private func resolve(
-    size: LhLoadingSize = .medium,
+    lhSize: LhLoadingSize = .medium,
     tone: LhLoadingTone = .primary,
     colors: LhColors
   ) -> LhLoadingAppearance {
-    LhLoadingStyle.resolveAppearance(size: size, tone: tone, colors: colors)
+    LhLoadingStyle.resolveAppearance(lhSize: lhSize, tone: tone, colors: colors)
   }
 
   // case: medium-size-uses-medium-token（默认尺寸，并反向确认 small 不同）
@@ -28,7 +28,7 @@ final class LhLoadingTests: XCTestCase {
 
   // case: large-size-uses-large-token（并反向确认 medium 不同）
   func testLargeSizeUsesLargeToken() {
-    let a = resolve(size: .large, colors: light)
+    let a = resolve(lhSize: .large, colors: light)
     XCTAssertEqual(a.size, LhTokens.Loading.Size.large)
     XCTAssertNotEqual(
       LhTokens.Loading.Size.large, LhTokens.Loading.Size.medium,
@@ -70,12 +70,12 @@ final class LhLoadingTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    XCTAssertEqual(resolve(size: .large, colors: light).size, resolve(size: .large, colors: dark).size)
+    XCTAssertEqual(resolve(lhSize: .large, colors: light).size, resolve(lhSize: .large, colors: dark).size)
   }
 
   /// View 层渲染佐证
   func testLoadingViewInitAndRender() {
-    let loading = LhLoading(size: .large, tone: .info)
+    let loading = LhLoading(lhSize: .large, tone: .info)
     XCTAssertNotNil(loading.body)
   }
 }

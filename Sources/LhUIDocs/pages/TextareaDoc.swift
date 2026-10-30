@@ -62,8 +62,8 @@ struct TextareaDoc {
                   DocRow(cells: ["`showCount`", "是否显示字数计数", "`Bool`", "`false`"]),
                   DocRow(cells: ["`maxlength`", "最大字数（超出截断）", "`Int?`", "`nil`"]),
                   DocRow(cells: ["`onValueChange`", "内容变化回调，payload 为新值", "`((String) -> Void)?`", "`nil`"]),
-                  DocRow(cells: ["`onFocus`", "聚焦回调", "`(() -> Void)?`", "`nil`"]),
-                  DocRow(cells: ["`onBlur`", "失焦回调", "`(() -> Void)?`", "`nil`"]),
+                  DocRow(cells: ["`lhOnFocus`", "聚焦回调", "`(() -> Void)?`", "`nil`"]),
+                  DocRow(cells: ["`lhOnBlur`", "失焦回调", "`(() -> Void)?`", "`nil`"]),
                 ]),
               DocTable(
                 title: "颜色",
@@ -118,7 +118,7 @@ struct TextareaDoc {
                   DocRow(cells: ["`disabled-blocks-input`", "禁用态不触发 onValueChange", "`testDisabledBlocksInput`"]),
                   DocRow(cells: ["`showcount-renders-count`", "计数显示 `3/10` 并消费计数字号令牌", "`testShowCountRendersCount`"]),
                   DocRow(cells: ["`showcount-without-maxlength-renders-length-only`", "无上限时只显示 `3`", "`testShowCountWithoutMaxlengthRendersLengthOnly`"]),
-                  DocRow(cells: ["`focus-uses-focus-token`", "聚焦消费 focus 令牌并触发 onFocus", "`testFocusUsesFocusToken`"]),
+                  DocRow(cells: ["`focus-uses-focus-token`", "聚焦消费 focus 令牌并触发 lhOnFocus", "`testFocusUsesFocusToken`"]),
                   DocRow(cells: ["`maxlength-truncates-input`", "超出字数截断", "`testMaxlengthTruncatesInput`"]),
                 ])
         ]

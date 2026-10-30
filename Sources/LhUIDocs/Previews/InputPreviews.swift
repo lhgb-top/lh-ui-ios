@@ -25,7 +25,7 @@ enum InputPreviews {
       StatefulPreview(initial: ["", "", ""]) { $values in
         PreviewLayout.column {
           ForEach(Array(LhInputSize.allCases.enumerated()), id: \.offset) { index, size in
-            LhInput(value: $values.element(index), placeholder: "\(size.rawValue) 号输入框", size: size)
+            LhInput(value: $values.element(index), placeholder: "\(size.rawValue) 号输入框", lhSize: size)
           }
         }
       }

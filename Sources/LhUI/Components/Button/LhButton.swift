@@ -7,11 +7,11 @@ import LhUITokens
 /// 的 8 条黄金用例（已翻译为 XCTest，见 Tests/LhUITests/LhButtonTests.swift）。
 public struct LhButton: View {
   /// 点击回调；disabled 或 loading 为 true 时不触发
-  public var onClick: () -> Void
+  public var lhOnClick: () -> Void
   /// 按钮类型，决定底色与文字色
   public var type: LhButtonType = .default
   /// 按钮尺寸，映射到 button.height / paddingHorizontal / fontSize / iconSize 令牌
-  public var size: LhButtonSize = .medium
+  public var lhSize: LhButtonSize = .medium
   /// 是否禁用；禁用时不响应点击并呈现禁用样式（disabled.* 令牌）
   public var disabled: Bool = false
   /// 是否加载中；加载中显示指示器且点击不触发 onClick
@@ -26,18 +26,18 @@ public struct LhButton: View {
   @Environment(\.lhColors) private var colors
 
   public init(
-    onClick: @escaping () -> Void,
+    lhOnClick: @escaping () -> Void,
     type: LhButtonType = .default,
-    size: LhButtonSize = .medium,
+    lhSize: LhButtonSize = .medium,
     disabled: Bool = false,
     loading: Bool = false,
     icon: String? = nil,
     bgPattern: Bool = false,
     label: Text
   ) {
-    self.onClick = onClick
+    self.lhOnClick = lhOnClick
     self.type = type
-    self.size = size
+    self.lhSize = lhSize
     self.disabled = disabled
     self.loading = loading
     self.icon = icon
@@ -47,9 +47,9 @@ public struct LhButton: View {
 
   /// 便捷初始化：直接传字符串文字
   public init(
-    onClick: @escaping () -> Void,
+    lhOnClick: @escaping () -> Void,
     type: LhButtonType = .default,
-    size: LhButtonSize = .medium,
+    lhSize: LhButtonSize = .medium,
     disabled: Bool = false,
     loading: Bool = false,
     icon: String? = nil,
@@ -57,14 +57,14 @@ public struct LhButton: View {
     text: some StringProtocol
   ) {
     self.init(
-      onClick: onClick, type: type, size: size, disabled: disabled, loading: loading,
+      lhOnClick: lhOnClick, type: type, lhSize: lhSize, disabled: disabled, loading: loading,
       icon: icon, bgPattern: bgPattern, label: Text(text)
     )
   }
 
   public var body: some View {
     let appearance = LhButtonStyle.resolveAppearance(
-      type: type, size: size, disabled: disabled, loading: loading, bgPattern: bgPattern,
+      type: type, lhSize: lhSize, disabled: disabled, loading: loading, bgPattern: bgPattern,
       colors: colors
     )
 
@@ -114,7 +114,7 @@ public struct LhButton: View {
     .onTapGesture {
       // 状态 gate：disabled 与 loading 均不触发（黄金用例前三条）
       if appearance.enabled {
-        onClick()
+        lhOnClick()
       }
     }
     .accessibilityElement(children: .combine)

@@ -23,7 +23,7 @@ struct ButtonDoc {
         ],
         preview: ButtonPreviews.types,
         code: [
-          "LhButton(onClick: {}, type: .primary, text: \"主要按钮\")",
+          "LhButton(lhOnClick: {}, type: .primary, text: \"主要按钮\")",
         ],
         tables: []
       ),
@@ -40,7 +40,7 @@ struct ButtonDoc {
       DocSection(
         title: "状态",
         prose: [
-          "禁用与加载中都不触发 `onClick`；两者共存时按**禁用优先**处理（黄金用例 `disabled-precedes-loading`）。",
+          "禁用与加载中都不触发 `lhOnClick`；两者共存时按**禁用优先**处理（黄金用例 `disabled-precedes-loading`）。",
         ],
         preview: ButtonPreviews.states,
         code: [],
@@ -78,11 +78,11 @@ struct ButtonDoc {
                 title: "Props",
                 headers: ["属性", "说明", "类型", "默认值"],
                 rows: [
-                  DocRow(cells: ["`onClick`", "点击回调；`disabled` 或 `loading` 为 true 时不触发", "`() -> Void`", "—"]),
+                  DocRow(cells: ["`lhOnClick`", "点击回调；`disabled` 或 `loading` 为 true 时不触发", "`() -> Void`", "—"]),
                   DocRow(cells: ["`type`", "按钮类型，决定底色与文字色", "`LhButtonType`", "`.default`"]),
-                  DocRow(cells: ["`size`", "按钮尺寸，映射到尺寸令牌", "`LhButtonSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "按钮尺寸，映射到尺寸令牌", "`LhButtonSize`", "`.medium`"]),
                   DocRow(cells: ["`disabled`", "是否禁用", "`Bool`", "`false`"]),
-                  DocRow(cells: ["`loading`", "是否加载中（显示指示器，不触发 onClick）", "`Bool`", "`false`"]),
+                  DocRow(cells: ["`loading`", "是否加载中（显示指示器，不触发 lhOnClick）", "`Bool`", "`false`"]),
                   DocRow(cells: ["`icon`", "图标名（SF Symbol 映射解析）", "`String?`", "`nil`"]),
                   DocRow(cells: ["`bgPattern`", "是否绘制国风花纹底纹", "`Bool`", "`false`"]),
                   DocRow(cells: ["`label` / `text`", "按钮文字内容（spec 的 default 插槽）", "`Text` / 字符串", "—"]),

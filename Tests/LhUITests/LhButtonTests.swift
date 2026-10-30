@@ -15,14 +15,14 @@ final class LhButtonTests: XCTestCase {
 
   private func resolve(
     type: LhButtonType = .default,
-    size: LhButtonSize = .medium,
+    lhSize: LhButtonSize = .medium,
     disabled: Bool = false,
     loading: Bool = false,
     bgPattern: Bool = false,
     colors: LhColors
   ) -> LhButtonAppearance {
     LhButtonStyle.resolveAppearance(
-      type: type, size: size, disabled: disabled, loading: loading, bgPattern: bgPattern,
+      type: type, lhSize: lhSize, disabled: disabled, loading: loading, bgPattern: bgPattern,
       colors: colors
     )
   }
@@ -72,7 +72,7 @@ final class LhButtonTests: XCTestCase {
 
   // case: small-size-uses-small-tokens（并反向确认 large 不同）
   func testSmallSizeUsesSmallTokens() {
-    let a = resolve(size: .small, colors: light)
+    let a = resolve(lhSize: .small, colors: light)
     XCTAssertEqual(a.height, LhTokens.Button.Height.small)
     XCTAssertEqual(a.fontSize, LhTokens.Button.FontSize.small)
     XCTAssertNotEqual(
@@ -106,8 +106,8 @@ final class LhButtonTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    let lightAppearance = resolve(size: .large, colors: light)
-    let darkAppearance = resolve(size: .large, colors: dark)
+    let lightAppearance = resolve(lhSize: .large, colors: light)
+    let darkAppearance = resolve(lhSize: .large, colors: dark)
     XCTAssertEqual(lightAppearance.height, darkAppearance.height)
     XCTAssertEqual(lightAppearance.paddingHorizontal, darkAppearance.paddingHorizontal)
     XCTAssertEqual(lightAppearance.fontSize, darkAppearance.fontSize)
@@ -115,7 +115,7 @@ final class LhButtonTests: XCTestCase {
 
   /// 便捷初始化器渲染文字内容（case: default-type-renders-text 的 View 层佐证）
   func testButtonViewInitAcceptsText() {
-    let button = LhButton(onClick: {}, text: "按钮")
+    let button = LhButton(lhOnClick: {}, text: "按钮")
     XCTAssertNotNil(button.body)
   }
 }

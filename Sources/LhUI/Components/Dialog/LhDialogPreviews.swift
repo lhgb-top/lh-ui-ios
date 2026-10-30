@@ -9,8 +9,8 @@ struct DialogDemo: View {
   var body: some View {
     ZStack {
       VStack(spacing: LhTokens.Spacing.base) {
-        LhButton(onClick: { visible = true }, type: .primary, text: "打开对话框")
-        LhButton(onClick: { dangerVisible = true }, type: .danger, text: "危险确认")
+        LhButton(lhOnClick: { visible = true }, type: .primary, text: "打开对话框")
+        LhButton(lhOnClick: { dangerVisible = true }, type: .danger, text: "危险确认")
       }
       .padding(LhTokens.Spacing.base)
 

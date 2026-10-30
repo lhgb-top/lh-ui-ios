@@ -32,12 +32,12 @@ public struct LhLoadingAppearance: Equatable {
 /// - tone 映射到对应语义色令牌
 public enum LhLoadingStyle {
   public static func resolveAppearance(
-    size: LhLoadingSize,
+    lhSize: LhLoadingSize,
     tone: LhLoadingTone,
     colors: LhColors
   ) -> LhLoadingAppearance {
     let dimension: CGFloat
-    switch size {
+    switch lhSize {
     case .small: dimension = LhTokens.Loading.Size.small
     case .medium: dimension = LhTokens.Loading.Size.medium
     case .large: dimension = LhTokens.Loading.Size.large
@@ -69,7 +69,7 @@ public enum LhLoadingStyle {
 /// （motion.duration.base，单位秒）驱动的循环旋转落地同一视觉。
 public struct LhLoading: View {
   /// 指示器直径，映射到 loading.size.* 令牌
-  public var size: LhLoadingSize = .medium
+  public var lhSize: LhLoadingSize = .medium
   /// 环色，取对应语义色令牌
   public var tone: LhLoadingTone = .primary
   /// 是否旋转（默认开启；预览静态帧时可关闭）
@@ -78,14 +78,14 @@ public struct LhLoading: View {
   @State private var rotation: Double = 0
   @Environment(\.lhColors) private var colors
 
-  public init(size: LhLoadingSize = .medium, tone: LhLoadingTone = .primary, animating: Bool = true) {
-    self.size = size
+  public init(lhSize: LhLoadingSize = .medium, tone: LhLoadingTone = .primary, animating: Bool = true) {
+    self.lhSize = lhSize
     self.tone = tone
     self.animating = animating
   }
 
   public var body: some View {
-    let appearance = LhLoadingStyle.resolveAppearance(size: size, tone: tone, colors: colors)
+    let appearance = LhLoadingStyle.resolveAppearance(lhSize: lhSize, tone: tone, colors: colors)
 
     return Circle()
       // 四分之一弧（缺口环），旋转时形成加载视觉

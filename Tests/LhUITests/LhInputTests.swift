@@ -10,7 +10,7 @@ final class LhInputTests: XCTestCase {
 
   private func resolve(
     type: LhInputType = .text,
-    size: LhInputSize = .medium,
+    lhSize: LhInputSize = .medium,
     disabled: Bool = false,
     readonly: Bool = false,
     clearable: Bool = false,
@@ -19,7 +19,7 @@ final class LhInputTests: XCTestCase {
     colors: LhColors
   ) -> LhInputAppearance {
     LhInputStyle.resolveAppearance(
-      type: type, size: size, disabled: disabled, readonly: readonly,
+      type: type, lhSize: lhSize, disabled: disabled, readonly: readonly,
       clearable: clearable, hasValue: hasValue, focused: focused, colors: colors
     )
   }
@@ -75,7 +75,7 @@ final class LhInputTests: XCTestCase {
 
   // case: small-size-uses-small-tokens
   func testSmallSizeUsesSmallTokens() {
-    let a = resolve(size: .small, colors: light)
+    let a = resolve(lhSize: .small, colors: light)
     XCTAssertEqual(a.height, LhTokens.Input.Height.small)
     XCTAssertEqual(a.paddingHorizontal, LhTokens.Input.PaddingHorizontal.small)
     XCTAssertEqual(a.fontSize, LhTokens.Input.FontSize.small)
@@ -107,8 +107,8 @@ final class LhInputTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    let l = resolve(size: .large, colors: light)
-    let d = resolve(size: .large, colors: dark)
+    let l = resolve(lhSize: .large, colors: light)
+    let d = resolve(lhSize: .large, colors: dark)
     XCTAssertEqual(l.height, d.height)
     XCTAssertEqual(l.fontSize, d.fontSize)
   }

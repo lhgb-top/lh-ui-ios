@@ -13,8 +13,8 @@ struct CheckboxDemo: View {
       LhCheckbox(checked: .constant(true), label: "已选中")
       LhCheckbox(checked: .constant(false), indeterminate: true, label: "不确定态")
       LhCheckbox(checked: $disabled, disabled: true, label: "禁用态")
-      LhCheckbox(checked: .constant(true), size: .small, label: "小号")
-      LhCheckbox(checked: .constant(true), size: .large, label: "大号")
+      LhCheckbox(checked: .constant(true), lhSize: .small, label: "小号")
+      LhCheckbox(checked: .constant(true), lhSize: .large, label: "大号")
     }
   }
 }

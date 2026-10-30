@@ -25,9 +25,9 @@ import LhUITokens
 #Preview("尺寸：small / medium / large") {
   LhTheme {
     HStack(spacing: LhTokens.Spacing.xl) {
-      LhIcon(name: "star", size: .small)
-      LhIcon(name: "star", size: .medium)
-      LhIcon(name: "star", size: .large)
+      LhIcon(name: "star", lhSize: .small)
+      LhIcon(name: "star", lhSize: .medium)
+      LhIcon(name: "star", lhSize: .large)
     }
     .padding(LhTokens.Spacing.base)
   }

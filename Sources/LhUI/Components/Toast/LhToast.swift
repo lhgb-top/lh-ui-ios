@@ -100,7 +100,7 @@ public struct LhToast: View {
   /// 自动隐藏时长（毫秒）；到期后自动隐藏并触发 onClose
   public var duration: Int = 2000
   /// 在可用区域内的定位
-  public var position: LhToastPosition = .center
+  public var lhPosition: LhToastPosition = .center
   /// 计时到期自动隐藏时触发（主动置 visible=false 不触发）
   public var onClose: (() -> Void)? = nil
 
@@ -111,14 +111,14 @@ public struct LhToast: View {
     text: String,
     type: LhToastType = .default,
     duration: Int = 2000,
-    position: LhToastPosition = .center,
+    lhPosition: LhToastPosition = .center,
     onClose: (() -> Void)? = nil
   ) {
     self._visible = visible
     self.text = text
     self.type = type
     self.duration = duration
-    self.position = position
+    self.lhPosition = lhPosition
     self.onClose = onClose
   }
 
@@ -154,8 +154,8 @@ public struct LhToast: View {
           )
           // 按 position 定位（spec：上下两端留 spacing.xl 边距）
           .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: toastAlignment)
-          .padding(.top, position == .top ? appearance.edgeMargin : 0)
-          .padding(.bottom, position == .bottom ? appearance.edgeMargin : 0)
+          .padding(.top, lhPosition == .top ? appearance.edgeMargin : 0)
+          .padding(.bottom, lhPosition == .bottom ? appearance.edgeMargin : 0)
           .zIndex(Double(LhTokens.ZIndex.toast))
         }
         // id 组合 visible + text + duration：宿主重复显示同一 toast（visible 已为 true）
@@ -180,7 +180,7 @@ public struct LhToast: View {
 
   /// position → SwiftUI Alignment
   private var toastAlignment: Alignment {
-    switch position {
+    switch lhPosition {
     case .top: return .top
     case .center: return .center
     case .bottom: return .bottom

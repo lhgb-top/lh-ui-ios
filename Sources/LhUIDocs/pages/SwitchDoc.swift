@@ -43,7 +43,7 @@ struct SwitchDoc {
       DocSection(
         title: "加载态",
         prose: [
-          "`loading = true` 时轨道内置 `LhLoading(size: .small, tone: .primary)`，且点击被 gate 拦截",
+          "`loading = true` 时轨道内置 `LhLoading(lhSize: .small, tone: .primary)`，且点击被 gate 拦截",
           "（黄金用例 `loading-blocks-change`）。",
         ],
         preview: SwitchPreviews.loadingState,
@@ -65,7 +65,7 @@ struct SwitchDoc {
                   DocRow(cells: ["`checked`", "开关状态（受控双向绑定）", "`Bool`", "—"]),
                   DocRow(cells: ["`disabled`", "是否禁用（不触发 onChange）", "`Bool`", "`false`"]),
                   DocRow(cells: ["`loading`", "是否加载中（内置指示器，不触发 onChange）", "`Bool`", "`false`"]),
-                  DocRow(cells: ["`size`", "开关尺寸，映射到尺寸令牌", "`LhSwitchSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "开关尺寸，映射到尺寸令牌", "`LhSwitchSize`", "`.medium`"]),
                   DocRow(cells: ["`onChange`", "状态变化回调，payload 为新值", "`((Bool) -> Void)?`", "`nil`"]),
                 ]),
               DocTable(

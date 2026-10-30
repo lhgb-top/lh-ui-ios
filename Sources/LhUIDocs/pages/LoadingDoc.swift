@@ -44,7 +44,7 @@ struct LoadingDoc {
         ],
         preview: LoadingPreviews.staticFrame,
         code: [
-          "LhLoading(size: .large, animating: false)",
+          "LhLoading(lhSize: .large, animating: false)",
         ],
         tables: []
       ),
@@ -58,7 +58,7 @@ struct LoadingDoc {
                 title: "Props",
                 headers: ["属性", "说明", "类型", "默认值"],
                 rows: [
-                  DocRow(cells: ["`size`", "圆环尺寸，映射到尺寸令牌", "`LhLoadingSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "圆环尺寸，映射到尺寸令牌", "`LhLoadingSize`", "`.medium`"]),
                   DocRow(cells: ["`tone`", "圆环色调，映射到语义色令牌", "`LhLoadingTone`", "`.primary`"]),
                   DocRow(cells: ["`animating`", "是否旋转（`false` 冻结为静态帧）", "`Bool`", "`true`"]),
                 ]),

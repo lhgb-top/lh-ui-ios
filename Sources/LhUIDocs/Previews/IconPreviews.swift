@@ -24,11 +24,11 @@ enum IconPreviews {
       PreviewLayout.column {
         PreviewLayout.row {
           ForEach(LhIconTone.allCases, id: \.self) { tone in
-            LhIcon(name: "star", tone: tone, onClick: { scope.showToast("\(toneLabel(tone)) 色调图标") })
+            LhIcon(name: "star", tone: tone, lhOnClick: { scope.showToast("\(toneLabel(tone)) 色调图标") })
           }
         }
         PreviewCaption(text: "未登记的图标名返回 nil，调用方不绘制、不崩溃")
-        LhIcon(name: "not-a-registered-icon", onClick: { scope.showToast("不会触发") })
+        LhIcon(name: "not-a-registered-icon", lhOnClick: { scope.showToast("不会触发") })
       }
     })
   }
@@ -38,7 +38,7 @@ enum IconPreviews {
       PreviewLayout.column {
         ForEach(LhIconSize.allCases, id: \.self) { size in
           PreviewLayout.row {
-            LhIcon(name: "search", size: size, onClick: { scope.showToast("点击了 \(size.rawValue) 号图标") })
+            LhIcon(name: "search", lhSize: size, lhOnClick: { scope.showToast("点击了 \(size.rawValue) 号图标") })
             PreviewCaption(text: "\(size.rawValue)（\(sizeLabel(size))）")
           }
         }

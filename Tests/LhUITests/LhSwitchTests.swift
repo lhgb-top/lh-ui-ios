@@ -12,11 +12,11 @@ final class LhSwitchTests: XCTestCase {
     checked: Bool = false,
     disabled: Bool = false,
     loading: Bool = false,
-    size: LhSwitchSize = .medium,
+    lhSize: LhSwitchSize = .medium,
     colors: LhColors
   ) -> LhSwitchAppearance {
     LhSwitchStyle.resolveAppearance(
-      checked: checked, disabled: disabled, loading: loading, size: size, colors: colors
+      checked: checked, disabled: disabled, loading: loading, lhSize: lhSize, colors: colors
     )
   }
 
@@ -63,7 +63,7 @@ final class LhSwitchTests: XCTestCase {
 
   /// 尺寸令牌映射（spec：size 映射到 switch.width.<size> 与 switch.height.<size>）
   func testSizeUsesSwitchTokens() {
-    let a = resolve(size: .large, colors: light)
+    let a = resolve(lhSize: .large, colors: light)
     XCTAssertEqual(a.width, LhTokens.Switch.Width.large)
     XCTAssertEqual(a.height, LhTokens.Switch.Height.large)
     XCTAssertNotEqual(
@@ -74,7 +74,7 @@ final class LhSwitchTests: XCTestCase {
 
   /// 滑块直径 = 高度 - 2 × switch.gap（spec behaviors）
   func testThumbDiameterIsHeightMinusTwoGaps() {
-    let a = resolve(size: .medium, colors: light)
+    let a = resolve(lhSize: .medium, colors: light)
     XCTAssertEqual(a.thumbSize, a.height - 2 * LhTokens.Switch.gap)
   }
 
@@ -87,8 +87,8 @@ final class LhSwitchTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    let l = resolve(size: .large, colors: light)
-    let d = resolve(size: .large, colors: dark)
+    let l = resolve(lhSize: .large, colors: light)
+    let d = resolve(lhSize: .large, colors: dark)
     XCTAssertEqual(l.width, d.width)
     XCTAssertEqual(l.height, d.height)
   }

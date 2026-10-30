@@ -36,12 +36,12 @@ public struct LhIconAppearance: Equatable {
 ///   取对应语义色；regular/secondary 取对应文字色
 public enum LhIconStyle {
   public static func resolveAppearance(
-    size: LhIconSize,
+    lhSize: LhIconSize,
     tone: LhIconTone,
     colors: LhColors
   ) -> LhIconAppearance {
     let dimension: CGFloat
-    switch size {
+    switch lhSize {
     case .small: dimension = LhTokens.Icon.Size.small
     case .medium: dimension = LhTokens.Icon.Size.medium
     case .large: dimension = LhTokens.Icon.Size.large
@@ -71,28 +71,28 @@ public struct LhIcon: View {
   /// 图标名（本地图标体系，见 LhIconMap）
   public var name: String
   /// 图标尺寸，映射到 icon.size.* 令牌
-  public var size: LhIconSize = .medium
+  public var lhSize: LhIconSize = .medium
   /// 语义色调
   public var tone: LhIconTone = .default
   /// 点击回调
-  public var onClick: (() -> Void)? = nil
+  public var lhOnClick: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
 
   public init(
     name: String,
-    size: LhIconSize = .medium,
+    lhSize: LhIconSize = .medium,
     tone: LhIconTone = .default,
-    onClick: (() -> Void)? = nil
+    lhOnClick: (() -> Void)? = nil
   ) {
     self.name = name
-    self.size = size
+    self.lhSize = lhSize
     self.tone = tone
-    self.onClick = onClick
+    self.lhOnClick = lhOnClick
   }
 
   public var body: some View {
-    let appearance = LhIconStyle.resolveAppearance(size: size, tone: tone, colors: colors)
+    let appearance = LhIconStyle.resolveAppearance(lhSize: lhSize, tone: tone, colors: colors)
 
     return Group {
       if let symbol = LhIconMap.symbol(for: name) {
@@ -108,10 +108,10 @@ public struct LhIcon: View {
     .foregroundColor(appearance.color)
     .contentShape(Rectangle())
     .onTapGesture {
-      onClick?()
+      lhOnClick?()
     }
     .accessibilityElement(children: .ignore)
     .accessibilityLabel(name)
-    .accessibilityAddTraits(onClick != nil ? .isButton : [])
+    .accessibilityAddTraits(lhOnClick != nil ? .isButton : [])
   }
 }

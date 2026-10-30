@@ -39,14 +39,14 @@ public enum LhSwitchStyle {
     checked: Bool,
     disabled: Bool,
     loading: Bool,
-    size: LhSwitchSize,
+    lhSize: LhSwitchSize,
     colors: LhColors
   ) -> LhSwitchAppearance {
     let enabled = !disabled && !loading
 
     let width: CGFloat
     let height: CGFloat
-    switch size {
+    switch lhSize {
     case .small:
       width = LhTokens.Switch.Width.small
       height = LhTokens.Switch.Height.small
@@ -108,7 +108,7 @@ public struct LhSwitch: View {
   /// 是否加载中；加载中滑块位置显示加载环且不响应点击
   public var loading: Bool = false
   /// 开关尺寸，映射到 switch.width / switch.height 令牌
-  public var size: LhSwitchSize = .medium
+  public var lhSize: LhSwitchSize = .medium
   /// 开关态变化回调，携带新开关态
   public var onChange: ((Bool) -> Void)? = nil
 
@@ -118,19 +118,19 @@ public struct LhSwitch: View {
     checked: Binding<Bool>,
     disabled: Bool = false,
     loading: Bool = false,
-    size: LhSwitchSize = .medium,
+    lhSize: LhSwitchSize = .medium,
     onChange: ((Bool) -> Void)? = nil
   ) {
     self._checked = checked
     self.disabled = disabled
     self.loading = loading
-    self.size = size
+    self.lhSize = lhSize
     self.onChange = onChange
   }
 
   public var body: some View {
     let appearance = LhSwitchStyle.resolveAppearance(
-      checked: checked, disabled: disabled, loading: loading, size: size, colors: colors
+      checked: checked, disabled: disabled, loading: loading, lhSize: lhSize, colors: colors
     )
 
     return ZStack {
@@ -141,7 +141,7 @@ public struct LhSwitch: View {
 
       if appearance.showsLoading {
         // 加载环占据滑块位置（主色）
-        LhLoading(size: .small, tone: .primary)
+        LhLoading(lhSize: .small, tone: .primary)
           .frame(width: appearance.thumbSize, height: appearance.thumbSize)
           .offset(x: appearance.thumbOffset)
       } else {

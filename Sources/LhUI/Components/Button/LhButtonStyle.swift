@@ -54,7 +54,7 @@ public enum LhButtonStyle {
   /// 解析按钮外观（黄金用例的断言入口）
   public static func resolveAppearance(
     type: LhButtonType,
-    size: LhButtonSize,
+    lhSize: LhButtonSize,
     disabled: Bool,
     loading: Bool,
     bgPattern: Bool,
@@ -105,7 +105,7 @@ public enum LhButtonStyle {
     let paddingHorizontal: CGFloat
     let fontSize: CGFloat
     let iconSize: CGFloat
-    switch size {
+    switch lhSize {
     case .small:
       height = LhTokens.Button.Height.small
       paddingHorizontal = LhTokens.Button.PaddingHorizontal.small

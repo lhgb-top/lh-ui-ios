@@ -31,7 +31,7 @@ enum ButtonPreviews {
     AnyView(DocPreviewFrame(title: "六种语义类型（点击触发全局 Toast）") {
       PreviewLayout.column {
         ForEach(LhButtonType.allCases, id: \.self) { type in
-          LhButton(onClick: { scope.showToast("点击了 \(label(type))") }, type: type, text: label(type))
+          LhButton(lhOnClick: { scope.showToast("点击了 \(label(type))") }, type: type, text: label(type))
         }
       }
     })
@@ -42,9 +42,9 @@ enum ButtonPreviews {
       PreviewLayout.column {
         ForEach(LhButtonSize.allCases, id: \.self) { size in
           LhButton(
-            onClick: { scope.showToast("点击了 \(sizeLabel(size))") },
+            lhOnClick: { scope.showToast("点击了 \(sizeLabel(size))") },
             type: .primary,
-            size: size,
+            lhSize: size,
             text: sizeLabel(size)
           )
         }
@@ -55,9 +55,9 @@ enum ButtonPreviews {
   static func states(_ scope: DocPreviewScope) -> AnyView {
     AnyView(DocPreviewFrame(title: "默认 / 禁用 / 加载中（后两者点击不触发 onClick）") {
       PreviewLayout.column {
-        LhButton(onClick: { scope.showToast("点击了普通态按钮") }, text: "默认状态")
-        LhButton(onClick: { scope.showToast("禁用态不该响应") }, disabled: true, text: "禁用状态")
-        LhButton(onClick: { scope.showToast("加载态不该响应") }, loading: true, text: "加载状态")
+        LhButton(lhOnClick: { scope.showToast("点击了普通态按钮") }, text: "默认状态")
+        LhButton(lhOnClick: { scope.showToast("禁用态不该响应") }, disabled: true, text: "禁用状态")
+        LhButton(lhOnClick: { scope.showToast("加载态不该响应") }, loading: true, text: "加载状态")
       }
     })
   }
@@ -65,10 +65,10 @@ enum ButtonPreviews {
   static func iconAndPattern(_ scope: DocPreviewScope) -> AnyView {
     AnyView(DocPreviewFrame(title: "图标（LhIconMap 映射）+ 国风花纹底纹（bgPattern）") {
       PreviewLayout.column {
-        LhButton(onClick: { scope.showToast("点击了带图标的按钮") }, type: .primary, icon: "search", text: "搜索")
-        LhButton(onClick: { scope.showToast("点击了花纹底纹按钮") }, type: .primary, bgPattern: true, text: "花纹底")
+        LhButton(lhOnClick: { scope.showToast("点击了带图标的按钮") }, type: .primary, icon: "search", text: "搜索")
+        LhButton(lhOnClick: { scope.showToast("点击了花纹底纹按钮") }, type: .primary, bgPattern: true, text: "花纹底")
         LhButton(
-          onClick: { scope.showToast("点击了图标 + 花纹按钮") },
+          lhOnClick: { scope.showToast("点击了图标 + 花纹按钮") },
           type: .warning,
           icon: "star",
           bgPattern: true,
@@ -82,14 +82,14 @@ enum ButtonPreviews {
     AnyView(DocPreviewFrame(title: "明暗色板同屏对比（右上角「切换主题」切全站）") {
       PreviewLayout.columnGroup {
         PreviewLayout.column {
-          LhButton(onClick: { scope.showToast("点击了明色主要按钮") }, type: .primary, text: "明色主题")
-          LhButton(onClick: { scope.showToast("点击了明色默认按钮") }, text: "明色主题")
+          LhButton(lhOnClick: { scope.showToast("点击了明色主要按钮") }, type: .primary, text: "明色主题")
+          LhButton(lhOnClick: { scope.showToast("点击了明色默认按钮") }, text: "明色主题")
         }
         // 暗色区块：LhTheme 注入暗色色板，容器底色取暗色令牌（非字面量）
         LhTheme(isDark: true) {
           PreviewLayout.column {
-            LhButton(onClick: { scope.showToast("点击了暗色主要按钮") }, type: .primary, text: "暗色主题")
-            LhButton(onClick: { scope.showToast("点击了暗色默认按钮") }, text: "暗色主题")
+            LhButton(lhOnClick: { scope.showToast("点击了暗色主要按钮") }, type: .primary, text: "暗色主题")
+            LhButton(lhOnClick: { scope.showToast("点击了暗色默认按钮") }, text: "暗色主题")
           }
         }
         .padding(DocPalette.cardPadding)

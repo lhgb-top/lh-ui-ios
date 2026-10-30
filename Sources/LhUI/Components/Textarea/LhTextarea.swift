@@ -114,9 +114,9 @@ public struct LhTextarea: View {
   /// 文本变化回调，携带变更后的文本
   public var onValueChange: ((String) -> Void)? = nil
   /// 获得焦点回调
-  public var onFocus: (() -> Void)? = nil
+  public var lhOnFocus: (() -> Void)? = nil
   /// 失去焦点回调
-  public var onBlur: (() -> Void)? = nil
+  public var lhOnBlur: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
   @FocusState private var focused: Bool
@@ -130,8 +130,8 @@ public struct LhTextarea: View {
     showCount: Bool = false,
     maxlength: Int? = nil,
     onValueChange: ((String) -> Void)? = nil,
-    onFocus: (() -> Void)? = nil,
-    onBlur: (() -> Void)? = nil
+    lhOnFocus: (() -> Void)? = nil,
+    lhOnBlur: (() -> Void)? = nil
   ) {
     self._value = value
     self.placeholder = placeholder
@@ -141,8 +141,8 @@ public struct LhTextarea: View {
     self.showCount = showCount
     self.maxlength = maxlength
     self.onValueChange = onValueChange
-    self.onFocus = onFocus
-    self.onBlur = onBlur
+    self.lhOnFocus = lhOnFocus
+    self.lhOnBlur = lhOnBlur
   }
 
   public var body: some View {
@@ -194,9 +194,9 @@ public struct LhTextarea: View {
     )
     .onChange(of: focused) { isFocused in
       if isFocused {
-        onFocus?()
+        lhOnFocus?()
       } else {
-        onBlur?()
+        lhOnBlur?()
       }
     }
     .accessibilityElement(children: .combine)

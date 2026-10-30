@@ -18,9 +18,9 @@ struct InputDemo: View {
       VStack(alignment: .leading, spacing: LhTokens.Spacing.sm) {
         Text("small / medium / large").font(.caption).foregroundColor(.secondary)
         HStack {
-          LhInput(value: $text, placeholder: "小", size: .small) { _ in }
-          LhInput(value: $text, placeholder: "中", size: .medium) { _ in }
-          LhInput(value: $text, placeholder: "大", size: .large) { _ in }
+          LhInput(value: $text, placeholder: "小", lhSize: .small) { _ in }
+          LhInput(value: $text, placeholder: "中", lhSize: .medium) { _ in }
+          LhInput(value: $text, placeholder: "大", lhSize: .large) { _ in }
         }
       }
     }

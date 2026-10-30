@@ -19,9 +19,9 @@ struct SwitchDemo: View {
         LhSwitch(checked: .constant(true), loading: true)
       }
       HStack(spacing: LhTokens.Spacing.lg) {
-        LhSwitch(checked: .constant(true), size: .small)
-        LhSwitch(checked: .constant(true), size: .medium)
-        LhSwitch(checked: .constant(true), size: .large)
+        LhSwitch(checked: .constant(true), lhSize: .small)
+        LhSwitch(checked: .constant(true), lhSize: .medium)
+        LhSwitch(checked: .constant(true), lhSize: .large)
       }
     }
   }

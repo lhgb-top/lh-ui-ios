@@ -14,7 +14,7 @@ enum PickerPreviews {
       StatefulPreview(initial: (false, 0)) { state in
         ZStack {
           PreviewLayout.row {
-            LhButton(onClick: { state.wrappedValue.0 = true }, type: .primary, text: "选择一项")
+            LhButton(lhOnClick: { state.wrappedValue.0 = true }, type: .primary, text: "选择一项")
           }
           LhPicker(
             visible: visibleBinding(state),
@@ -35,7 +35,7 @@ enum PickerPreviews {
       StatefulPreview(initial: (false, 2)) { state in
         ZStack {
           PreviewLayout.row {
-            LhButton(onClick: { state.wrappedValue.0 = true }, type: .primary, text: "拖动滚轮")
+            LhButton(lhOnClick: { state.wrappedValue.0 = true }, type: .primary, text: "拖动滚轮")
             PreviewCaption(text: "吸附后当前值：\(options[state.wrappedValue.1])")
           }
           LhPicker(
@@ -58,7 +58,7 @@ enum PickerPreviews {
         ZStack {
           PreviewLayout.column {
             PreviewLayout.row {
-              LhButton(onClick: { state.wrappedValue.0 = true }, type: .primary, text: "初值 99（越界）")
+              LhButton(lhOnClick: { state.wrappedValue.0 = true }, type: .primary, text: "初值 99（越界）")
             }
             PreviewCaption(text: "越界值 clamp 到末项；确认 payload 是 clamp 后的索引")
           }

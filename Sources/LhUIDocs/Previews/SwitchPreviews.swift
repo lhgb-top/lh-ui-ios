@@ -25,7 +25,7 @@ enum SwitchPreviews {
       StatefulPreview(initial: [true, false, true]) { $on in
         PreviewLayout.column {
           ForEach(Array(LhSwitchSize.allCases.enumerated()), id: \.offset) { index, size in
-            LhSwitch(checked: $on.element(index), size: size) { value in
+            LhSwitch(checked: $on.element(index), lhSize: size) { value in
               scope.showToast("\(size.rawValue) 号：\(value ? "打开" : "关闭")")
             }
           }

@@ -66,7 +66,7 @@ public struct LhDocsView: View {
           visible: $scope.toastVisible,
           text: scope.toastText,
           type: .success,
-          position: scope.toastPosition
+          lhPosition: scope.toastPosition
         )
       }
       // 明暗切换同时驱动系统 colorScheme，令牌色板与原生控件同步

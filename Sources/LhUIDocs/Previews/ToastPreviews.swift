@@ -32,7 +32,7 @@ enum ToastPreviews {
           PreviewLayout.row {
             ForEach(LhToastType.allCases, id: \.self) { type in
               LhButton(
-                onClick: {
+                lhOnClick: {
                   state.wrappedValue.1 = type
                   state.wrappedValue.0 = true
                 },
@@ -58,7 +58,7 @@ enum ToastPreviews {
           PreviewLayout.row {
             ForEach(LhToastPosition.allCases, id: \.self) { position in
               LhButton(
-                onClick: {
+                lhOnClick: {
                   state.wrappedValue.1 = position
                   state.wrappedValue.0 = true
                 },
@@ -70,7 +70,7 @@ enum ToastPreviews {
           LhToast(
             visible: visibleBinding(state),
             text: "\(positionLabel(state.wrappedValue.1))提示",
-            position: state.wrappedValue.1
+            lhPosition: state.wrappedValue.1
           )
         }
       }
@@ -83,7 +83,7 @@ enum ToastPreviews {
         ZStack {
           PreviewLayout.column {
             PreviewLayout.row {
-              LhButton(onClick: { visible.wrappedValue = true }, type: .primary, text: "显示 2 秒提示")
+              LhButton(lhOnClick: { visible.wrappedValue = true }, type: .primary, text: "显示 2 秒提示")
             }
             PreviewCaption(text: "onClose 只在自动消失时触发（hide-is-silent）")
           }
@@ -92,7 +92,7 @@ enum ToastPreviews {
             text: "2 秒后自动消失",
             type: .success,
             duration: 2000,
-            position: .bottom
+            lhPosition: .bottom
           ) {
             scope.showToast("onClose：提示已自动消失")
           }

@@ -89,7 +89,7 @@ public struct LhCell: View {
   /// 左侧图标名（本地图标体系，见 LhIconMap）
   public var icon: String? = nil
   /// 点击回调；clickable 为 false 时不触发
-  public var onClick: (() -> Void)? = nil
+  public var lhOnClick: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
 
@@ -101,7 +101,7 @@ public struct LhCell: View {
     clickable: Bool = false,
     required: Bool = false,
     icon: String? = nil,
-    onClick: (() -> Void)? = nil
+    lhOnClick: (() -> Void)? = nil
   ) {
     self.title = title
     self.value = value
@@ -110,7 +110,7 @@ public struct LhCell: View {
     self.clickable = clickable
     self.required = required
     self.icon = icon
-    self.onClick = onClick
+    self.lhOnClick = lhOnClick
   }
 
   public var body: some View {
@@ -118,7 +118,7 @@ public struct LhCell: View {
 
     return HStack(alignment: .center, spacing: appearance.gap) {
       if let iconName = icon {
-        LhIcon(name: iconName, size: .medium)
+        LhIcon(name: iconName, lhSize: .medium)
           .frame(width: appearance.iconSize, height: appearance.iconSize)
           .foregroundColor(appearance.iconColor)
       }
@@ -176,7 +176,7 @@ public struct LhCell: View {
     .onTapGesture {
       // 状态 gate：clickable 为 false 时不触发（黄金用例 not-clickable-no-onclick）
       if appearance.clickable {
-        onClick?()
+        lhOnClick?()
       }
     }
     .accessibilityElement(children: .combine)

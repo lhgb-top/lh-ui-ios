@@ -34,7 +34,7 @@ enum LoadingPreviews {
       PreviewLayout.column {
         ForEach(LhLoadingSize.allCases, id: \.self) { size in
           PreviewLayout.row {
-            LhLoading(size: size, tone: .primary)
+            LhLoading(lhSize: size, tone: .primary)
             PreviewCaption(text: "\(size.rawValue)")
           }
         }

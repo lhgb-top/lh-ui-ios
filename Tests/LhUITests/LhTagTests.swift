@@ -10,12 +10,12 @@ final class LhTagTests: XCTestCase {
 
   private func resolve(
     type: LhTagType = .default,
-    size: LhTagSize = .medium,
+    lhSize: LhTagSize = .medium,
     plain: Bool = false,
     round: Bool = false,
     colors: LhColors
   ) -> LhTagAppearance {
-    LhTagStyle.resolveAppearance(type: type, size: size, plain: plain, round: round, colors: colors)
+    LhTagStyle.resolveAppearance(type: type, lhSize: lhSize, plain: plain, round: round, colors: colors)
   }
 
   // case: default-type-renders-text —— 默认类型取中性底 + 主文字色 + 基础描边
@@ -43,7 +43,7 @@ final class LhTagTests: XCTestCase {
 
   // case: small-size-uses-small-tokens（并反向确认 large 不同）
   func testSmallSizeUsesSmallTokens() {
-    let a = resolve(size: .small, colors: light)
+    let a = resolve(lhSize: .small, colors: light)
     XCTAssertEqual(a.height, LhTokens.Tag.Height.small)
     XCTAssertEqual(a.paddingHorizontal, LhTokens.Tag.PaddingHorizontal.small)
     XCTAssertEqual(a.fontSize, LhTokens.Tag.FontSize.small)
@@ -94,8 +94,8 @@ final class LhTagTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    let l = resolve(size: .large, colors: light)
-    let d = resolve(size: .large, colors: dark)
+    let l = resolve(lhSize: .large, colors: light)
+    let d = resolve(lhSize: .large, colors: dark)
     XCTAssertEqual(l.height, d.height)
     XCTAssertEqual(l.paddingHorizontal, d.paddingHorizontal)
     XCTAssertEqual(l.fontSize, d.fontSize)

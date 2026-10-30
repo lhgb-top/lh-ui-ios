@@ -11,7 +11,7 @@ struct PickerDemo: View {
     ZStack {
       VStack(spacing: LhTokens.Spacing.base) {
         Text("当前选择：\(options[value])")
-        LhButton(onClick: { visible = true }, type: .primary, text: "打开选择器")
+        LhButton(lhOnClick: { visible = true }, type: .primary, text: "打开选择器")
       }
       .padding(LhTokens.Spacing.base)
 

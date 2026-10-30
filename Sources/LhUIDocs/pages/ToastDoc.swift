@@ -68,7 +68,7 @@ struct ToastDoc {
                   DocRow(cells: ["`visible`", "是否显示（受控双向绑定，到时自动置回 false）", "`Bool`", "—"]),
                   DocRow(cells: ["`text`", "提示文字", "`String`", "—"]),
                   DocRow(cells: ["`type`", "提示类型，决定是否显示圆点及圆点颜色", "`LhToastType`", "`.default`"]),
-                  DocRow(cells: ["`position`", "显示位置", "`LhToastPosition`", "`.center`"]),
+                  DocRow(cells: ["`lhPosition`", "显示位置", "`LhToastPosition`", "`.center`"]),
                   DocRow(cells: ["`duration`", "显示时长（毫秒）", "`Int`", "`2000`（取 `toast.duration` 令牌）"]),
                   DocRow(cells: ["`onClose`", "自动消失回调（外部手动隐藏不触发）", "`(() -> Void)?`", "`nil`"]),
                 ]),

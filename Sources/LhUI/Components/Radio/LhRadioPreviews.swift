@@ -15,9 +15,9 @@ struct RadioDemo: View {
       LhRadio(checked: .constant(true), disabled: true, label: "禁用选中")
       LhRadio(checked: .constant(false), disabled: true, label: "禁用未选中")
       HStack(spacing: LhTokens.Spacing.base) {
-        LhRadio(checked: .constant(true), size: .small)
-        LhRadio(checked: .constant(true), size: .medium)
-        LhRadio(checked: .constant(true), size: .large)
+        LhRadio(checked: .constant(true), lhSize: .small)
+        LhRadio(checked: .constant(true), lhSize: .medium)
+        LhRadio(checked: .constant(true), lhSize: .large)
       }
     }
   }

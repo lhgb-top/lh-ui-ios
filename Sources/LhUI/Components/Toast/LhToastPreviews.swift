@@ -8,7 +8,7 @@ struct ToastDemo: View {
   var body: some View {
     ZStack {
       VStack(spacing: LhTokens.Spacing.base) {
-        LhButton(onClick: { visible = true }, type: .primary, text: "显示轻提示")
+        LhButton(lhOnClick: { visible = true }, type: .primary, text: "显示轻提示")
       }
       .padding(LhTokens.Spacing.base)
 
@@ -28,9 +28,9 @@ struct ToastDemo: View {
 #Preview("类型与定位") {
   LhTheme {
     ZStack {
-      LhToast(visible: .constant(true), text: "默认提示（顶部）", position: .top)
-      LhToast(visible: .constant(true), text: "成功", type: .success, position: .center)
-      LhToast(visible: .constant(true), text: "操作有误，请重试", type: .danger, position: .bottom)
+      LhToast(visible: .constant(true), text: "默认提示（顶部）", lhPosition: .top)
+      LhToast(visible: .constant(true), text: "成功", type: .success, lhPosition: .center)
+      LhToast(visible: .constant(true), text: "操作有误，请重试", type: .danger, lhPosition: .bottom)
     }
   }
 }

@@ -179,7 +179,7 @@ public struct LhDialog: View {
             HStack(spacing: appearance.gap) {
               // 取消按钮固定 default 类型
               LhButton(
-                onClick: {
+                lhOnClick: {
                   onCancel?()
                   close()  // 黄金用例 cancel-emits-oncancel
                 },
@@ -189,7 +189,7 @@ public struct LhDialog: View {
 
               // 确认按钮按 type 映射语义色
               LhButton(
-                onClick: {
+                lhOnClick: {
                   onConfirm?()
                   close()  // 黄金用例 confirm-emits-onconfirm + confirm-also-emits-onclose
                 },

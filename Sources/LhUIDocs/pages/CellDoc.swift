@@ -24,7 +24,7 @@ struct CellDoc {
         preview: CellPreviews.basic,
         code: [
           "LhCell(title: \"标题文字\", value: \"右侧值\", clickable: true) {",
-          "  // onClick",
+          "  // lhOnClick",
           "}",
         ],
         tables: []
@@ -56,7 +56,7 @@ struct CellDoc {
                   DocRow(cells: ["`bordered`", "是否显示底部分隔线", "`Bool`", "`true`"]),
                   DocRow(cells: ["`clickable`", "是否可点击（控制箭头与点击 gate）", "`Bool`", "`false`"]),
                   DocRow(cells: ["`required`", "标题前是否显示红色必填星号", "`Bool`", "`false`"]),
-                  DocRow(cells: ["`onClick`", "点击回调；`clickable = false` 时不触发", "`(() -> Void)?`", "`nil`"]),
+                  DocRow(cells: ["`lhOnClick`", "点击回调；`clickable = false` 时不触发", "`(() -> Void)?`", "`nil`"]),
                 ]),
               DocTable(
                 title: "文字层级",
@@ -110,8 +110,8 @@ struct CellDoc {
                   DocRow(cells: ["`label-renders-secondary-tone`", "副标题取次要文字色", "`testLabelRendersSecondaryTone`"]),
                   DocRow(cells: ["`required-uses-danger-token`", "必填星号取危险色令牌", "`testRequiredUsesDangerToken`"]),
                   DocRow(cells: ["`bordered-emits-line-command`", "分隔线消费 border.lighter 令牌", "`testBorderedUsesBorderTokens`"]),
-                  DocRow(cells: ["`clickable-emits-onclick`", "可点击时触发 onClick", "`testClickableIsInteractive`"]),
-                  DocRow(cells: ["`not-clickable-no-onclick`", "不可点击时不触发 onClick", "`testNotClickableIsNotInteractive`"]),
+                  DocRow(cells: ["`clickable-emits-onclick`", "可点击时触发 lhOnClick", "`testClickableIsInteractive`"]),
+                  DocRow(cells: ["`not-clickable-no-onclick`", "不可点击时不触发 lhOnClick", "`testNotClickableIsNotInteractive`"]),
                 ])
         ]
       ),

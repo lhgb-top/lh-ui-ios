@@ -11,10 +11,10 @@ final class LhRadioTests: XCTestCase {
   private func resolve(
     checked: Bool = false,
     disabled: Bool = false,
-    size: LhRadioSize = .medium,
+    lhSize: LhRadioSize = .medium,
     colors: LhColors
   ) -> LhRadioAppearance {
-    LhRadioStyle.resolveAppearance(checked: checked, disabled: disabled, size: size, colors: colors)
+    LhRadioStyle.resolveAppearance(checked: checked, disabled: disabled, lhSize: lhSize, colors: colors)
   }
 
   // case: tap-unchecked-emits-onchange —— 未选中时可交互（点击触发 onChange(true)）
@@ -52,7 +52,7 @@ final class LhRadioTests: XCTestCase {
 
   // case: small-size-uses-small-token
   func testSmallSizeUsesSmallToken() {
-    let a = resolve(size: .small, colors: light)
+    let a = resolve(lhSize: .small, colors: light)
     XCTAssertEqual(a.size, LhTokens.Radio.Size.small)
     XCTAssertNotEqual(
       LhTokens.Radio.Size.small, LhTokens.Radio.Size.large,
@@ -86,7 +86,7 @@ final class LhRadioTests: XCTestCase {
 
   /// 尺寸令牌暗色不覆盖：明暗色板下尺寸应一致
   func testDimensionsAreIdenticalInDarkMode() {
-    XCTAssertEqual(resolve(size: .large, colors: light).size, resolve(size: .large, colors: dark).size)
+    XCTAssertEqual(resolve(lhSize: .large, colors: light).size, resolve(lhSize: .large, colors: dark).size)
   }
 
   /// View 层受控构造与渲染佐证

@@ -64,7 +64,7 @@ struct TagDoc {
                 rows: [
                   DocRow(cells: ["`text`", "标签文字", "`String`", "—"]),
                   DocRow(cells: ["`type`", "标签类型，决定底色与文字色", "`LhTagType`", "`.default`"]),
-                  DocRow(cells: ["`size`", "标签尺寸，映射到尺寸令牌", "`LhTagSize`", "`.medium`"]),
+                  DocRow(cells: ["`lhSize`", "标签尺寸，映射到尺寸令牌", "`LhTagSize`", "`.medium`"]),
                   DocRow(cells: ["`plain`", "是否为描边浅底形态", "`Bool`", "`false`"]),
                   DocRow(cells: ["`round`", "是否为胶囊圆角（半径 = 高度 / 2）", "`Bool`", "`false`"]),
                   DocRow(cells: ["`closable`", "是否显示关闭按钮", "`Bool`", "`false`"]),
