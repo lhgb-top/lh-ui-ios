@@ -29,7 +29,7 @@
 <p class="sim-note">HTML 模拟预览（iOS / SwiftUI 外观），非真机渲染</p>
 
 ```swift
-LhButton(onClick: {}, type: .primary, text: "主要按钮")
+LhButton(lhOnClick: {}, type: .primary, text: "主要按钮")
 ```
 
 ## 尺寸
@@ -51,7 +51,7 @@ iOS 形态为胶囊圆角（`radius.round` 令牌）。
 
 ## 状态
 
-禁用与加载中都不触发 `onClick`；两者共存时按**禁用优先**处理（黄金用例 `disabled-precedes-loading`）。
+禁用与加载中都不触发 `lhOnClick`；两者共存时按**禁用优先**处理（黄金用例 `disabled-precedes-loading`）。
 
 <div class="sim-phone">
   <div class="sim-statusbar"><span>9:41</span><span>Button 状态</span></div>
@@ -116,11 +116,11 @@ refresh → arrow.clockwise、check → checkmark、close → xmark，未登记�
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| `onClick` | 点击回调；`disabled` 或 `loading` 为 true 时不触发 | `() -> Void` | — |
+| `lhOnClick` | 点击回调；`disabled` 或 `loading` 为 true 时不触发 | `() -> Void` | — |
 | `type` | 按钮类型，决定底色与文字色 | `LhButtonType` | `.default` |
-| `size` | 按钮尺寸，映射到尺寸令牌 | `LhButtonSize` | `.medium` |
+| `lhSize` | 按钮尺寸，映射到尺寸令牌 | `LhButtonSize` | `.medium` |
 | `disabled` | 是否禁用 | `Bool` | `false` |
-| `loading` | 是否加载中（显示指示器，不触发 onClick） | `Bool` | `false` |
+| `loading` | 是否加载中（显示指示器，不触发 lhOnClick） | `Bool` | `false` |
 | `icon` | 图标名（SF Symbol 映射解析） | `String?` | `nil` |
 | `bgPattern` | 是否绘制国风花纹底纹 | `Bool` | `false` |
 | `label` / `text` | 按钮文字内容（spec 的 default 插槽） | `Text` / 字符串 | — |

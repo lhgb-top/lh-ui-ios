@@ -51,7 +51,7 @@ LhLoading(tone: .success)
 用于截图测试与文档静态帧。
 
 ```swift
-LhLoading(size: .large, animating: false)
+LhLoading(lhSize: .large, animating: false)
 ```
 
 ## API
@@ -60,7 +60,7 @@ LhLoading(size: .large, animating: false)
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| `size` | 圆环尺寸，映射到尺寸令牌 | `LhLoadingSize` | `.medium` |
+| `lhSize` | 圆环尺寸，映射到尺寸令牌 | `LhLoadingSize` | `.medium` |
 | `tone` | 圆环色调，映射到语义色令牌 | `LhLoadingTone` | `.primary` |
 | `animating` | 是否旋转（`false` 冻结为静态帧） | `Bool` | `true` |
 

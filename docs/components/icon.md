@@ -60,8 +60,8 @@ LhIcon(name: "star", tone: .primary)
 未登记的名称不绘制（返回 `nil`），不会崩溃。
 
 ```swift
-LhIcon(name: "search", size: .large, tone: .secondary) {
-  // onClick
+LhIcon(name: "search", lhSize: .large, tone: .secondary) {
+  // lhOnClick
 }
 ```
 
@@ -72,9 +72,9 @@ LhIcon(name: "search", size: .large, tone: .secondary) {
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | `name` | 图标逻辑名（经 `LhIconMap` 映射 SF Symbol） | `String` | — |
-| `size` | 图标尺寸，映射到尺寸令牌 | `LhIconSize` | `.medium` |
+| `lhSize` | 图标尺寸，映射到尺寸令牌 | `LhIconSize` | `.medium` |
 | `tone` | 图标色调，映射到文字/语义色令牌 | `LhIconTone` | `.default` |
-| `onClick` | 点击回调；未传则不响应点击 | `(() -> Void)?` | `nil` |
+| `lhOnClick` | 点击回调；未传则不响应点击 | `(() -> Void)?` | `nil` |
 
 ### LhIconSize
 
@@ -109,7 +109,7 @@ LhIcon(name: "search", size: .large, tone: .secondary) {
 
 | case id | 断言 | 本地测试 |
 | --- | --- | --- |
-| `click-emits-onclick` | 点击触发 `onClick` 一次 | View 层 `onTapGesture`（手势断言需模拟器，见 #Preview） |
+| `click-emits-onclick` | 点击触发 `lhOnClick` 一次 | View 层 `onTapGesture`（手势断言需模拟器，见 #Preview） |
 | `default-tone-uses-text-primary` | 默认色调取主要文字色 | `testDefaultToneUsesTextPrimary` |
 | `primary-tone-uses-primary-token` | 主色调取主色令牌 | `testPrimaryToneUsesPrimaryToken` |
 | `small-size-uses-small-token` | 小号取 small 尺寸令牌 | `testSmallSizeUsesSmallToken` |

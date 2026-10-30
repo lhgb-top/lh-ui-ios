@@ -69,7 +69,7 @@ LhCheckbox(checked: $checked, label: "全选", indeterminate: somePartial) { _ i
 | `checked` | 勾选状态（受控双向绑定） | `Bool` | — |
 | `indeterminate` | 是否不确定态（显示横杠，点击后变勾选） | `Bool` | `false` |
 | `disabled` | 是否禁用（不触发 onChange） | `Bool` | `false` |
-| `size` | 复选框尺寸，映射到尺寸令牌 | `LhCheckboxSize` | `.medium` |
+| `lhSize` | 复选框尺寸，映射到尺寸令牌 | `LhCheckboxSize` | `.medium` |
 | `label` | 文字标签 | `String` | `""` |
 | `onChange` | 状态变化回调，payload 为新值 | `((Bool) -> Void)?` | `nil` |
 

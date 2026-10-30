@@ -72,8 +72,8 @@ LhTextarea(value: $text, showCount: true, maxlength: 10)
 | `showCount` | 是否显示字数计数 | `Bool` | `false` |
 | `maxlength` | 最大字数（超出截断） | `Int?` | `nil` |
 | `onValueChange` | 内容变化回调，payload 为新值 | `((String) -> Void)?` | `nil` |
-| `onFocus` | 聚焦回调 | `(() -> Void)?` | `nil` |
-| `onBlur` | 失焦回调 | `(() -> Void)?` | `nil` |
+| `lhOnFocus` | 聚焦回调 | `(() -> Void)?` | `nil` |
+| `lhOnBlur` | 失焦回调 | `(() -> Void)?` | `nil` |
 
 ### 颜色
 
@@ -106,7 +106,7 @@ LhTextarea(value: $text, showCount: true, maxlength: 10)
 | `disabled-blocks-input` | 禁用态不触发 onValueChange | `testDisabledBlocksInput` |
 | `showcount-renders-count` | 计数显示 `3/10` 并消费计数字号令牌 | `testShowCountRendersCount` |
 | `showcount-without-maxlength-renders-length-only` | 无上限时只显示 `3` | `testShowCountWithoutMaxlengthRendersLengthOnly` |
-| `focus-uses-focus-token` | 聚焦消费 focus 令牌并触发 onFocus | `testFocusUsesFocusToken` |
+| `focus-uses-focus-token` | 聚焦消费 focus 令牌并触发 lhOnFocus | `testFocusUsesFocusToken` |
 | `maxlength-truncates-input` | 超出字数截断 | `testMaxlengthTruncatesInput` |
 
 另有专项：`testLayoutUsesTextareaTokens` / `testReadonlyBlocksInputButKeepsFocusStyle` /

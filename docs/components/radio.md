@@ -62,7 +62,7 @@ LhRadio(checked: Binding(get: { picked == "blue" }, set: { _ in }), value: "blue
 | `checked` | 该项是否选中（受控双向绑定） | `Bool` | — |
 | `value` | 该项代表的值（与 `checked` 配合实现单选组） | `String` | `""` |
 | `disabled` | 是否禁用（不触发 onChange） | `Bool` | `false` |
-| `size` | 单选框尺寸，映射到尺寸令牌 | `LhRadioSize` | `.medium` |
+| `lhSize` | 单选框尺寸，映射到尺寸令牌 | `LhRadioSize` | `.medium` |
 | `label` | 文字标签 | `String` | `""` |
 | `onChange` | 选中变化回调，payload 为新值 | `((Bool) -> Void)?` | `nil` |
 

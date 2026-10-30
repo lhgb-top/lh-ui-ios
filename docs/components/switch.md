@@ -50,7 +50,7 @@ LhSwitch(checked: $on) { newValue in
 
 ## 加载态
 
-`loading = true` 时轨道内置 `LhLoading(size: .small, tone: .primary)`，且点击被 gate 拦截
+`loading = true` 时轨道内置 `LhLoading(lhSize: .small, tone: .primary)`，且点击被 gate 拦截
 （黄金用例 `loading-blocks-change`）。
 
 ```swift
@@ -66,7 +66,7 @@ LhSwitch(checked: $submitting, loading: submitting) { _ in }
 | `checked` | 开关状态（受控双向绑定） | `Bool` | — |
 | `disabled` | 是否禁用（不触发 onChange） | `Bool` | `false` |
 | `loading` | 是否加载中（内置指示器，不触发 onChange） | `Bool` | `false` |
-| `size` | 开关尺寸，映射到尺寸令牌 | `LhSwitchSize` | `.medium` |
+| `lhSize` | 开关尺寸，映射到尺寸令牌 | `LhSwitchSize` | `.medium` |
 | `onChange` | 状态变化回调，payload 为新值 | `((Bool) -> Void)?` | `nil` |
 
 ### LhSwitchSize

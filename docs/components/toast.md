@@ -72,7 +72,7 @@ LhToast(visible: $visible, text: "操作成功", type: .success, duration: 2000)
 | `visible` | 是否显示（受控双向绑定，到时自动置回 false） | `Bool` | — |
 | `text` | 提示文字 | `String` | — |
 | `type` | 提示类型，决定是否显示圆点及圆点颜色 | `LhToastType` | `.default` |
-| `position` | 显示位置 | `LhToastPosition` | `.center` |
+| `lhPosition` | 显示位置 | `LhToastPosition` | `.center` |
 | `duration` | 显示时长（毫秒） | `Int` | `2000`（取 `toast.duration` 令牌） |
 | `onClose` | 自动消失回调（外部手动隐藏不触发） | `(() -> Void)?` | `nil` |
 

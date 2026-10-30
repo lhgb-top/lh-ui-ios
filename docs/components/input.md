@@ -75,14 +75,14 @@ LhInput(value: $pwd, type: .password, clearable: true)
 | `value` | 输入内容（受控双向绑定） | `String` | — |
 | `placeholder` | 占位提示文字 | `String` | `""` |
 | `type` | 输入类型（明文 / 密文） | `LhInputType` | `.text` |
-| `size` | 输入框尺寸，映射到尺寸令牌 | `LhInputSize` | `.medium` |
+| `lhSize` | 输入框尺寸，映射到尺寸令牌 | `LhInputSize` | `.medium` |
 | `disabled` | 是否禁用（不触发任何回调） | `Bool` | `false` |
 | `readonly` | 是否只读（不触发 onValueChange，保留聚焦样式） | `Bool` | `false` |
 | `clearable` | 是否显示清除按钮 | `Bool` | `false` |
 | `maxlength` | 最大字数（超出截断，黄金用例 `maxlength-truncates-input`） | `Int?` | `nil` |
 | `onValueChange` | 内容变化回调，payload 为新值 | `((String) -> Void)?` | `nil` |
-| `onFocus` | 聚焦回调 | `(() -> Void)?` | `nil` |
-| `onBlur` | 失焦回调 | `(() -> Void)?` | `nil` |
+| `lhOnFocus` | 聚焦回调 | `(() -> Void)?` | `nil` |
+| `lhOnBlur` | 失焦回调 | `(() -> Void)?` | `nil` |
 
 ### LhInputSize
 
@@ -131,7 +131,7 @@ LhInput(value: $pwd, type: .password, clearable: true)
 | `disabled-blocks-input` | 禁用态不触发 onValueChange | `testDisabledBlocksInput` |
 | `readonly-blocks-input` | 只读态不触发 onValueChange | `testReadonlyBlocksInput` |
 | `placeholder-uses-placeholder-token` | 占位文字取占位色令牌 | `testPlaceholderUsesPlaceholderToken` |
-| `focus-uses-focus-token` | 聚焦消费 focus 令牌并触发 onFocus | `testFocusUsesFocusToken` |
+| `focus-uses-focus-token` | 聚焦消费 focus 令牌并触发 lhOnFocus | `testFocusUsesFocusToken` |
 | `small-size-uses-small-tokens` | 小号消费 small 尺寸令牌 | `testSmallSizeUsesSmallTokens` |
 | `maxlength-truncates-input` | 超出字数截断 | `testMaxlengthTruncatesInput` |
 

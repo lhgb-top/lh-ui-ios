@@ -34,7 +34,7 @@
 
 ```swift
 LhCell(title: "标题文字", value: "右侧值", clickable: true) {
-  // onClick
+  // lhOnClick
 }
 ```
 
@@ -73,7 +73,7 @@ LhCell(title: "标题文字", value: "右侧值", clickable: true) {
 | `bordered` | 是否显示底部分隔线 | `Bool` | `true` |
 | `clickable` | 是否可点击（控制箭头与点击 gate） | `Bool` | `false` |
 | `required` | 标题前是否显示红色必填星号 | `Bool` | `false` |
-| `onClick` | 点击回调；`clickable = false` 时不触发 | `(() -> Void)?` | `nil` |
+| `lhOnClick` | 点击回调；`clickable = false` 时不触发 | `(() -> Void)?` | `nil` |
 
 ### 文字层级
 
@@ -106,8 +106,8 @@ LhCell(title: "标题文字", value: "右侧值", clickable: true) {
 | `label-renders-secondary-tone` | 副标题取次要文字色 | `testLabelRendersSecondaryTone` |
 | `required-uses-danger-token` | 必填星号取危险色令牌 | `testRequiredUsesDangerToken` |
 | `bordered-emits-line-command` | 分隔线消费 border.lighter 令牌 | `testBorderedUsesBorderTokens` |
-| `clickable-emits-onclick` | 可点击时触发 onClick | `testClickableIsInteractive` |
-| `not-clickable-no-onclick` | 不可点击时不触发 onClick | `testNotClickableIsNotInteractive` |
+| `clickable-emits-onclick` | 可点击时触发 lhOnClick | `testClickableIsInteractive` |
+| `not-clickable-no-onclick` | 不可点击时不触发 lhOnClick | `testNotClickableIsNotInteractive` |
 
 另有暗色专项：`testDarkColorsComeFromDarkTokens` / `testDimensionsAreIdenticalInDarkMode` /
 `testCellInitAndRender` / `testLayoutUsesCellTokens`。

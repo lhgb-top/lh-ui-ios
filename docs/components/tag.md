@@ -84,7 +84,7 @@ LhTag(text: "可关闭", type: .primary, closable: true) {
 | --- | --- | --- | --- |
 | `text` | 标签文字 | `String` | — |
 | `type` | 标签类型，决定底色与文字色 | `LhTagType` | `.default` |
-| `size` | 标签尺寸，映射到尺寸令牌 | `LhTagSize` | `.medium` |
+| `lhSize` | 标签尺寸，映射到尺寸令牌 | `LhTagSize` | `.medium` |
 | `plain` | 是否为描边浅底形态 | `Bool` | `false` |
 | `round` | 是否为胶囊圆角（半径 = 高度 / 2） | `Bool` | `false` |
 | `closable` | 是否显示关闭按钮 | `Bool` | `false` |

@@ -10,7 +10,7 @@ struct Demo: View {
   var body: some View {
     LhTheme {
       LhButton(
-        onClick: { /* 处理点击 */ },
+        lhOnClick: { /* 处理点击 */ },
         type: .primary,
         text: "主要按钮"
       )
@@ -25,40 +25,40 @@ struct Demo: View {
 
 ```swift
 // 六种类型
-LhButton(onClick: {}, text: "默认")                      // .default
-LhButton(onClick: {}, type: .primary, text: "主要")
-LhButton(onClick: {}, type: .success, text: "成功")
-LhButton(onClick: {}, type: .warning, text: "警告")
-LhButton(onClick: {}, type: .danger, text: "危险")
-LhButton(onClick: {}, type: .info, text: "信息")
+LhButton(lhOnClick: {}, text: "默认")                      // .default
+LhButton(lhOnClick: {}, type: .primary, text: "主要")
+LhButton(lhOnClick: {}, type: .success, text: "成功")
+LhButton(lhOnClick: {}, type: .warning, text: "警告")
+LhButton(lhOnClick: {}, type: .danger, text: "危险")
+LhButton(lhOnClick: {}, type: .info, text: "信息")
 
 // 三种尺寸
-LhButton(onClick: {}, size: .small, text: "小型")
-LhButton(onClick: {}, size: .medium, text: "中型")
-LhButton(onClick: {}, size: .large, text: "大型")
+LhButton(lhOnClick: {}, lhSize: .small, text: "小型")
+LhButton(lhOnClick: {}, lhSize: .medium, text: "中型")
+LhButton(lhOnClick: {}, lhSize: .large, text: "大型")
 ```
 
 ## 状态
 
 ```swift
 // 禁用：不响应点击，呈现禁用样式
-LhButton(onClick: {}, disabled: true, text: "禁用")
+LhButton(lhOnClick: {}, disabled: true, text: "禁用")
 
-// 加载中：显示指示器，不触发 onClick
-LhButton(onClick: {}, loading: true, text: "加载中")
+// 加载中：显示指示器，不触发 lhOnClick
+LhButton(lhOnClick: {}, loading: true, text: "加载中")
 
 // 两者共存：按禁用优先处理（黄金用例 disabled-precedes-loading）
-LhButton(onClick: {}, disabled: true, loading: true, text: "禁用优先")
+LhButton(lhOnClick: {}, disabled: true, loading: true, text: "禁用优先")
 ```
 
 ## 图标与花纹底
 
 ```swift
 // 图标名按本地图标体系解析（SF Symbol 映射见 LhButtonStyle.icon(for:)，未登记名不绘制）
-LhButton(onClick: {}, type: .primary, icon: "search", text: "搜索")
+LhButton(lhOnClick: {}, type: .primary, icon: "search", text: "搜索")
 
 // 国风花纹底纹（消费 color.decoration 令牌）
-LhButton(onClick: {}, type: .primary, bgPattern: true, text: "花纹底")
+LhButton(lhOnClick: {}, type: .primary, bgPattern: true, text: "花纹底")
 ```
 
 ## 明暗主题
