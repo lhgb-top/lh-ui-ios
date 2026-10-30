@@ -88,7 +88,9 @@ function stringArray(lines, indent) {
 // ---------- config.ts 分组顺序解析（侧边栏顺序即首页顺序）----------
 function sliceArrayLiteral(src, startKeyword) {
   const kw = src.indexOf(startKeyword)
-  const br = src.indexOf('[', kw)
+  // 从赋值 '=' 之后取首个 '['：跳过 TS 类型标注里的 []（如 const guideGroups: Entry[] = [）
+  const eq = src.indexOf('=', kw)
+  const br = src.indexOf('[', eq)
   let depth = 0
   for (let i = br; i < src.length; i++) {
     if (src[i] === '[') depth++
@@ -104,20 +106,25 @@ function parseConfig() {
   const src = readFileSync(resolve(DOCS, '.vitepress/config.ts'), 'utf-8')
   const out = { guides: [], components: [] }
 
-  const guideSeg = sliceArrayLiteral(src, 'const guideGroups =')
-  const compSeg = sliceArrayLiteral(src, 'const componentGroups =')
+  const guideSeg = sliceArrayLiteral(src, 'const guideGroups')
+  const compSeg = sliceArrayLiteral(src, 'const componentGroups')
 
-  const pairRe = /text:\s*'([^']+)'[^}]*?slug:\s*'([^']+)'/g
+  // 条目 slug 兼容两种 config.ts 格式：
+  //   旧：{ text: '...', slug: '...' }
+  //   新（i18n labels）：{ slug: '...', labels: { 'zh-CN': '...', ... } }
+  const slugRe = /slug:\s*'([^']+)'/g
   let m
-  while ((m = pairRe.exec(guideSeg))) out.guides.push({ text: m[1], slug: m[2] })
+  while ((m = slugRe.exec(guideSeg))) out.guides.push({ text: m[1], slug: m[1] })
 
-  const groupRe = /text:\s*'([^']+)'\s*,\s*items:\s*\[([\s\S]*?)\]/g
+  // 分组名：旧格式取 text，新格式取 labels['zh-CN']（GROUP_TO_ENUM 的 key 是中文名）
+  const groupRe =
+    /(?:text:\s*'([^']+)'|labels:\s*\{[\s\S]*?'zh-CN':\s*'([^']+)')[\s\S]*?items:\s*\[([\s\S]*?)\]/g
   while ((m = groupRe.exec(compSeg))) {
     const items = []
-    const itemRe = /text:\s*'([^']+)'[^}]*?slug:\s*'([^']+)'/g
+    const itemSlugRe = /slug:\s*'([^']+)'/g
     let im
-    while ((im = itemRe.exec(m[2]))) items.push({ text: im[1], slug: im[2] })
-    out.components.push({ group: m[1], items })
+    while ((im = itemSlugRe.exec(m[3]))) items.push({ text: im[1], slug: im[1] })
+    out.components.push({ group: m[1] || m[2], items })
   }
   return out
 }

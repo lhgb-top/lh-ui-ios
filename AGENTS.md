@@ -188,3 +188,12 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
   值是 `Sources/LhUIDocs/Previews/{Comp}Previews.swift` 里**已存在**的方法名；新增场景标题时
   两处必须同步，否则生成页会引用不存在的预览方法（本机无 SwiftUI，只有 `swift-frontend -parse`
   能做语法级兜底，类型错误发现不了）。改完跑 `pnpm gen:docs`。
+
+## 备案/版权（docs 站）
+
+文档站页脚的备案（ICP / 公安）与版权行走「同步产物 + 适配器」：
+`docs/.beian/beian.json` 由工作区根 `scripts/sync-beian.mjs` 从
+`lh-feng-mo-workspace` 真源生成（**同步产物，禁止手改**；真源只读，改真源后重跑同步）；
+站点差异化（独立备案号、隐藏公安备案、许可证链接等）写 `docs/.beian/beian.local.json`，
+同步时与真源深合并。适配器在 docs/.vitepress/beian.ts。
+完整机制、渲染格式与变更流程见家族 [docs/备案资源同步方案.md](../docs/备案资源同步方案.md)。

@@ -2,6 +2,8 @@
 
 > lh-ui 家族 · 原生血脉 · iOS 端 —— **Swift + SwiftUI** UI 组件库（Swift Package）。
 >
+> 📖 **文档站**：<https://www.lhgb.top/lhui/ios/>
+>
 > 同品牌的设计令牌、组件契约与黄金用例定义在 `lh-ui-core`（构建期中心，移动端运行时零 JS）；
 > 本仓只手写 SwiftUI UI。与 web 血脉（plus / vue2 / react / uniapp）互相独立、不共享运行时代码，
 > 视觉一致性靠《设计语言基线》人工对齐。
@@ -31,7 +33,7 @@ import SwiftUI
 import LhUI
 
 LhTheme {
-    LhButton(onClick: { /* ... */ }, type: .primary, size: .large, text: "主要按钮")
+    LhButton(lhOnClick: { /* ... */ }, type: .primary, lhSize: .large, text: "主要按钮")
 }
 ```
 
