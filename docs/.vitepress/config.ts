@@ -124,6 +124,10 @@ const componentGroups: Group[] = [
         labels: { 'zh-CN': 'Tag 标签', 'en-US': 'Tag', 'zh-TW': 'Tag 標籤', 'ja-JP': 'Tag タグ', 'ko-KR': 'Tag 태그', es: 'Etiqueta', ar: 'وسم Tag', 'fr-FR': 'Étiquette', ru: 'Тег' },
       },
       {
+        slug: 'text',
+        labels: { 'zh-CN': 'Text 文本', 'en-US': 'Text', 'zh-TW': 'Text 文字', 'ja-JP': 'Text テキスト', 'ko-KR': 'Text 텍스트', es: 'Texto', ar: 'نص Text', 'fr-FR': 'Texte', ru: 'Текст' },
+      },
+      {
         slug: 'loading',
         labels: { 'zh-CN': 'Loading 加载', 'en-US': 'Loading', 'zh-TW': 'Loading 載入', 'ja-JP': 'Loading ローディング', 'ko-KR': 'Loading 로딩', es: 'Cargando', ar: 'تحميل Loading', 'fr-FR': 'Chargement', ru: 'Загрузка' },
       },
@@ -311,8 +315,8 @@ export default defineConfig({
   },
 
   head: [
-    // 图标：SVG 主（浏览器现代版）+ ICO fallback（搜索引擎/老浏览器）+ apple-touch-icon
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}logo.svg` }],
+    // 图标：PNG 主（品牌 logo，docs/部署/favicon-src/logo.png 分发）+ ICO fallback（搜索引擎/老浏览器）+ apple-touch-icon
+    ['link', { rel: 'icon', type: 'image/png', sizes: '512x512', href: `${base}logo.png` }],
     ['link', { rel: 'icon', sizes: '32x32', href: `${base}favicon.ico` }],
     ['link', { rel: 'apple-touch-icon', href: `${base}apple-touch-icon.png` }],
     // 社交分享图（docs/部署/favicon-src/og.png 同源栅格化）
@@ -362,6 +366,7 @@ export default defineConfig({
   themeConfig: {
     search: { provider: 'local' },
     siteTitle: 'lh-ui-ios',
+    logo: { light: '/logo.png', dark: '/logo-dark.png', alt: 'lh-ui' },
   },
 
   locales: buildLocales(),

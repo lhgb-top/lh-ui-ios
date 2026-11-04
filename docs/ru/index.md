@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: Нативное направление · iOS
   tagline: Библиотека компонентов на Swift + SwiftUI — токены, выровненные контракты, золотые сценарии

@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: Lignée native · iOS
   tagline: Bibliothèque de composants Swift + SwiftUI, pilotée par jetons, alignée sur les contrats, gardée par les cas dorés

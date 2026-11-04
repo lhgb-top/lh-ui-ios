@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: Native bloodline · iOS
   tagline: Swift + SwiftUI component library — token-driven, spec-aligned, guarded by golden cases

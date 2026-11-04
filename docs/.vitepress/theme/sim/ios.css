@@ -603,3 +603,31 @@
   height: var(--lh-navbar-iconSize);
   color: var(--lh-color-text-primary);
 }
+
+/* Text 文本：消费全局排版令牌的展示型原语。与 LhTextStyle.resolveAppearance() 的映射一一对应。 */
+
+.sim-text {
+  font-family: var(--lh-typography-fontFamily);
+  font-size: var(--lh-typography-fontSize-base);
+  font-weight: var(--lh-typography-fontWeight-primary);
+  line-height: var(--lh-typography-lineHeight-primary);
+  color: var(--lh-color-text-primary);
+  text-align: start;
+}
+
+.sim-text--extraLarge { font-size: var(--lh-typography-fontSize-extraLarge); }
+.sim-text--large { font-size: var(--lh-typography-fontSize-large); }
+.sim-text--medium { font-size: var(--lh-typography-fontSize-medium); }
+.sim-text--small { font-size: var(--lh-typography-fontSize-small); }
+.sim-text--extraSmall { font-size: var(--lh-typography-fontSize-extraSmall); }
+
+.sim-text--bold { font-weight: var(--lh-typography-fontWeight-bold); }
+
+.sim-text--regular { color: var(--lh-color-text-regular); }
+.sim-text--secondary { color: var(--lh-color-text-secondary); }
+.sim-text--placeholder { color: var(--lh-color-text-placeholder); }
+.sim-text--disabled { color: var(--lh-color-text-disabled); }
+.sim-text--selected { color: var(--lh-color-selected); }
+
+.sim-text--align-center { text-align: center; }
+.sim-text--align-end { text-align: end; }

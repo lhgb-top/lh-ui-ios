@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: Linaje nativo · iOS
   tagline: Biblioteca de componentes en Swift + SwiftUI, impulsada por tokens, alineada con los contratos, resguardada por casos dorados

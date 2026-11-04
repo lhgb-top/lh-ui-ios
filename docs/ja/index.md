@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: ネイティブ血脈 · iOS 端
   tagline: Swift + SwiftUI コンポーネントライブラリ、トークンドリブン・契約アライン・ゴールデンケースで保護

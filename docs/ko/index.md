@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: 네이티브 혈통 · iOS
   tagline: Swift + SwiftUI 컴포넌트 라이브러리, 토큰 주도 · 계약 정렬 · 골든 케이스 수호

@@ -2,6 +2,9 @@
 layout: home
 
 hero:
+  image:
+    src: /logo-banner.png
+    alt: lh-ui 品牌横幅
   name: lh-ui-ios
   text: سلالة أصلية · iOS
   tagline: مكتبة مكوّنات بلغة Swift و SwiftUI، مدفوعة بالرموز، متناغمة مع العقود، تحرسها الحالات الذهبية
