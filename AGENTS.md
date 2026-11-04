@@ -25,8 +25,8 @@ lh-ui-ios/
 │   ├── LhUITokens/Sources/LhUITokens/   # 【生成物，gitignore】LhTokens / LhDarkTokens / LhShadow
 │   ├── LhUI/
 │   │   ├── Theme/LhTheme.swift              # LhColors 色板 + Light/DarkLhColors + Environment(\.lhColors) + LhTheme 容器
-│   │   └── Components/<Comp>/               # 14 个组件：Button Cell Checkbox Dialog Icon Input
-│   │                                       # Loading Navbar Picker Radio Switch Tag Textarea Toast
+│   │   └── Components/<Comp>/               # 15 个组件：Button Cell Checkbox Dialog Icon Input Loading
+│   │                                       # Navbar Picker Radio Switch Tag Text Textarea Toast
 │   │       ├── Lh<Comp>.swift               # View + Lh<Comp>Style.resolveAppearance 纯函数 + Lh<Comp>Appearance 结构体
 │   │       └── Lh<Comp>Previews.swift       # #Preview（Icon 另有 LhIconMap.swift 图标名→SF Symbol 表）
 │   └── LhUIDocs/                            # 原生文档模块（D21）：真交互主场，对标 Android :docsui
@@ -40,15 +40,15 @@ lh-ui-ios/
 ├── Tests/LhUITests/Lh<Comp>Tests.swift      # 每组件一份 XCTest（黄金用例，仅 macOS 宿主可跑）
 ├── docs/                      # VitePress 文档站（内联静态 HTML 模拟器，D19）
 │   ├── guide/                 # introduction / installation / quickstart / theming / local-linking
-│   ├── components/*.md        # 14 个组件页（md 是 LhUIDocs 页面与网页站的共同真源）
+│   ├── components/*.md        # 15 个组件页（md 是 LhUIDocs 页面与网页站的共同真源）
 │   └── .vitepress/config.ts   # 数据驱动侧边栏：新增组件文档页必须在此登记 componentGroups
 ├── .changeset/                # 变更集（pnpm changeset / changeset:version）
 └── package.json               # 构建期工具脚本入口（非运行时）
 ```
 
-**待补缺口**：core 的 `specs/` 有 16 个组件，本仓已实现 14 个，`text` 组件尚未落地。
+**组件对齐状态（2026-11-03 审计复核）**：core 的 `specs/` 收录 15 个组件，本仓 15 个组件已全部落地（含 `Text`：`Sources/LhUI/Components/Text/LhText.swift` + `Tests/LhUITests/LhTextTests.swift` + `Sources/LhUIDocs/pages/TextDoc.swift`）。
 
-## 三、组件解剖约定（14 个组件一致遵守）
+## 三、组件解剖约定（15 个组件一致遵守）
 
 新增组件必须照抄这套形态，否则 XCTest 无法断言、文档无法对齐：
 
