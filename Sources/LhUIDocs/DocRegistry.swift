@@ -13,6 +13,7 @@ enum DocRegistry {
     ButtonDoc.entry,
     IconDoc.entry,
     TagDoc.entry,
+    TextDoc.entry,
     LoadingDoc.entry,
     CellDoc.entry,
     CheckboxDoc.entry,

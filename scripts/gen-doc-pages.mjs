@@ -44,6 +44,10 @@ const SCENE_MAP = {
   '图标 / 必填 / 不可点击': 'iconRequiredAndClick',
   // Checkbox
   不确定态: 'indeterminate',
+  // Text
+  字号级别: 'levels',
+  字重: 'weight',
+  对齐与行高: 'align',
   // Switch
   加载态: 'loadingState',
   // Input / Textarea
