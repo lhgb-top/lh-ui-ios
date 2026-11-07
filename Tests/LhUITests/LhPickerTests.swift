@@ -69,6 +69,39 @@ final class LhPickerTests: XCTestCase {
     XCTAssertEqual(a.titleColor, LhTokens.Color.Text.primary)
   }
 
+  // MARK: - 多语言默认文案（LhTexts）
+
+  /// confirmText/cancelText 为 nil 时取简体中文包（与 spec 默认值逐字对齐，R-n5）
+  func testDefaultTextsResolveFromZhCnPack() {
+    let a = LhPickerStyle.resolveAppearance(
+      visible: true, options: options, value: 0,
+      title: "选择品类", colors: light
+    )
+    XCTAssertEqual(a.confirmText, "确认")
+    XCTAssertEqual(a.cancelText, "取消")
+  }
+
+  /// nil + 英文包 → 英文确认/取消（多语言核心行为）
+  func testDefaultTextsResolveFromEnglishPack() {
+    let a = LhPickerStyle.resolveAppearance(
+      visible: true, options: options, value: 0,
+      title: "请选择", texts: EnUsLhTexts, colors: light
+    )
+    XCTAssertEqual(a.confirmText, "Confirm")
+    XCTAssertEqual(a.cancelText, "Cancel")
+  }
+
+  /// 显式文案透传（调用方自行本地化的文本不经语言包）
+  func testExplicitTextsPassThrough() {
+    let a = LhPickerStyle.resolveAppearance(
+      visible: true, options: options, value: 0,
+      title: "请选择", confirmText: "Done", cancelText: "Back",
+      texts: EnUsLhTexts, colors: light
+    )
+    XCTAssertEqual(a.confirmText, "Done")
+    XCTAssertEqual(a.cancelText, "Back")
+  }
+
   // case: hidden-not-rendered
   func testHiddenNotRendered() {
     let a = resolve(visible: false, colors: light)

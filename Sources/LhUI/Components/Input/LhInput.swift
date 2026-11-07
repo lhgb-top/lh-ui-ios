@@ -145,6 +145,7 @@ public struct LhInput: View {
   public var lhOnBlur: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
+  @Environment(\.lhTexts) private var texts
   @FocusState private var focused: Bool
 
   public init(
@@ -225,7 +226,7 @@ public struct LhInput: View {
       }
     }
     .accessibilityElement(children: .combine)
-    .accessibilityLabel(placeholder.isEmpty ? "输入框" : placeholder)
+    .accessibilityLabel(placeholder.isEmpty ? texts.inputLabelFallback : placeholder)
   }
 
   /// 输入写入网关：disabled / readonly 拒绝写入（控件即回滚，黄金用例

@@ -105,6 +105,33 @@ struct GuideQuickstartDoc {
         code: [],
         tables: []
       ),
+      DocSection(
+        title: "嵌入原生文档界面",
+        prose: [
+          "本仓自带一套**真交互文档 UI**（SwiftUI 实现，对标 Android `:docsui`）：全部组件文档 +",
+          "指南 + 明暗切换 + 实时可交互预览，与本文档站同源（页面由 `docs/**/*.md` 生成）。",
+          "引入 `LhUIDocs` 库产物后，宿主 App 一行即可嵌入（对标 Android 的拖入即用）：",
+          "UIKit 宿主用托管控制器入口（等价 Android `LhDocs.launch(context)`）：",
+          "想要一个独立的「lh-ui 文档」App？仓库里的 `docsapp/` 是极薄打包壳，",
+          "`open docsapp/LhUIDocsApp.xcodeproj` 即可 Run / Archive 出 IPA，",
+          "详见 [仓库 docsapp/README.md](https://github.com/lhgb-top/lh-ui-ios/blob/master/docsapp/README.md)。",
+        ],
+        preview: nil,
+        code: [
+          "import SwiftUI",
+          "import LhUIDocs",
+          "",
+          "struct DocsEntry: View {",
+          "  var body: some View {",
+          "    LhDocsView() // 零配置：自管返回栈 + 明暗切换 + 全局 Toast",
+          "  }",
+          "}",
+          "import LhUIDocs",
+          "",
+          "present(LhDocsViewController(), animated: true)",
+        ],
+        tables: []
+      ),
     ]
   )
 }

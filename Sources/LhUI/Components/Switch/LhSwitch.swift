@@ -113,6 +113,7 @@ public struct LhSwitch: View {
   public var onChange: ((Bool) -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
+  @Environment(\.lhTexts) private var texts
 
   public init(
     checked: Binding<Bool>,
@@ -161,7 +162,7 @@ public struct LhSwitch: View {
       onChange?(checked)
     }
     .accessibilityElement(children: .ignore)
-    .accessibilityLabel("开关")
+    .accessibilityLabel(texts.switchLabel)
     .accessibilityAddTraits(appearance.enabled ? .isButton : [])
   }
 }

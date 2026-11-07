@@ -36,13 +36,20 @@ public struct LhPickerAppearance: Equatable {
 /// - value 越界时钳制：负数取 0，大于候选项数 - 1 取最后一项
 /// - 遮罩取 color.background.overlay，层级取 zIndex.modal / zIndex.modalBackdrop
 public enum LhPickerStyle {
+  /// 解析外观（含默认按钮文案的语言包解析，纯函数）。
+  ///
+  /// - Parameters:
+  ///   - confirmText/cancelText: nil 时取 `texts` 语言包的对应文案（R-n5：
+  ///     spec 默认值 `"确认"` / `"取消"` 的多语言等价）
+  ///   - texts: 语言文案包，缺省简体中文
   public static func resolveAppearance(
     visible: Bool,
     options: [String],
     value: Int,
     title: String,
-    confirmText: String,
-    cancelText: String,
+    confirmText: String? = nil,
+    cancelText: String? = nil,
+    texts: LhTexts = ZhCnLhTexts,
     colors: LhColors
   ) -> LhPickerAppearance {
     // 越界钳制（黄金用例 clamp-negative-value-to-zero / clamp-overflow-value-to-last）
@@ -69,8 +76,8 @@ public enum LhPickerStyle {
       visible: visible,
       clampedValue: clamped,
       title: title,
-      confirmText: confirmText,
-      cancelText: cancelText
+      confirmText: confirmText ?? texts.pickerConfirm,
+      cancelText: cancelText ?? texts.pickerCancel
     )
   }
 }
@@ -89,10 +96,10 @@ public struct LhPicker: View {
   @Binding public var value: Int
   /// 工具栏中间的标题
   public var title: String = ""
-  /// 确认按钮文字
-  public var confirmText: String = "确认"
-  /// 取消按钮文字
-  public var cancelText: String = "取消"
+  /// 确认按钮文字；nil（缺省）取当前语言包
+  public var confirmText: String? = nil
+  /// 取消按钮文字；nil（缺省）取当前语言包
+  public var cancelText: String? = nil
   /// 滚轮停止且选中项变化时触发，携带新索引
   public var onValueChange: ((Int) -> Void)? = nil
   /// 点击确认时触发，携带当前选中索引
@@ -103,6 +110,7 @@ public struct LhPicker: View {
   public var onClose: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
+  @Environment(\.lhTexts) private var texts
   // 滚轮垂直拖动位移（松手吸附到最近候选项）
   @State private var dragOffset: CGFloat = 0
 
@@ -111,8 +119,8 @@ public struct LhPicker: View {
     options: [String],
     value: Binding<Int>,
     title: String = "",
-    confirmText: String = "确认",
-    cancelText: String = "取消",
+    confirmText: String? = nil,
+    cancelText: String? = nil,
     onValueChange: ((Int) -> Void)? = nil,
     onConfirm: ((Int) -> Void)? = nil,
     onCancel: (() -> Void)? = nil,
@@ -133,7 +141,8 @@ public struct LhPicker: View {
   public var body: some View {
     let appearance = LhPickerStyle.resolveAppearance(
       visible: visible, options: options, value: value, title: title,
-      confirmText: confirmText, cancelText: cancelText, colors: colors
+      confirmText: confirmText, cancelText: cancelText,
+      texts: texts, colors: colors
     )
 
     // 黄金用例 hidden-not-rendered：不可见时不渲染任何内容

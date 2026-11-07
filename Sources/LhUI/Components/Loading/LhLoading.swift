@@ -77,6 +77,7 @@ public struct LhLoading: View {
 
   @State private var rotation: Double = 0
   @Environment(\.lhColors) private var colors
+  @Environment(\.lhTexts) private var texts
 
   public init(lhSize: LhLoadingSize = .medium, tone: LhLoadingTone = .primary, animating: Bool = true) {
     self.lhSize = lhSize
@@ -98,7 +99,7 @@ public struct LhLoading: View {
       // animating 由 false 切 true 时 onAppear 不会再触发，需显式监听重启
       .onChange(of: animating) { _ in startRotationIfNeeded() }
       .accessibilityElement(children: .ignore)
-      .accessibilityLabel("加载中")
+      .accessibilityLabel(texts.loadingLabel)
       .accessibilityAddTraits(.updatesFrequently)
   }
 

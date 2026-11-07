@@ -102,4 +102,45 @@ final class LhDialogTests: XCTestCase {
     let dialog = LhDialog(visible: .constant(true), title: "标题", content: "内容") {}
     XCTAssertNotNil(dialog.body)
   }
+
+  // MARK: - 多语言默认文案（LhTexts）
+
+  /// confirmText/cancelText 为 nil 时取简体中文包（与 spec 默认值逐字对齐，R-n5）
+  func testDefaultTextsResolveFromZhCnPack() {
+    let a = resolve(colors: light)
+    XCTAssertEqual(a.confirmText, "确认")
+    XCTAssertEqual(a.cancelText, "取消")
+  }
+
+  /// nil + 英文包 → 英文确认/取消（多语言核心行为）
+  func testDefaultTextsResolveFromEnglishPack() {
+    let a = LhDialogStyle.resolveAppearance(
+      visible: true, type: .default, closable: false,
+      texts: EnUsLhTexts, colors: light
+    )
+    XCTAssertEqual(a.confirmText, "Confirm")
+    XCTAssertEqual(a.cancelText, "Cancel")
+  }
+
+  /// 显式文案透传（调用方自行本地化的文本不经语言包）
+  func testExplicitTextsPassThrough() {
+    let a = LhDialogStyle.resolveAppearance(
+      visible: true, type: .danger, closable: false,
+      confirmText: "删除", cancelText: "返回",
+      texts: EnUsLhTexts, colors: light
+    )
+    XCTAssertEqual(a.confirmText, "删除")
+    XCTAssertEqual(a.cancelText, "返回")
+  }
+
+  /// 空字符串保留为空（spec：为空时不显示对应按钮；View 层据此隐藏）
+  func testEmptyTextsArePreservedAsHideSentinel() {
+    let a = LhDialogStyle.resolveAppearance(
+      visible: true, type: .default, closable: false,
+      confirmText: "", cancelText: "",
+      texts: EnUsLhTexts, colors: light
+    )
+    XCTAssertEqual(a.confirmText, "", "空字符串是「隐藏按钮」哨兵，不应被语言包覆盖")
+    XCTAssertEqual(a.cancelText, "")
+  }
 }

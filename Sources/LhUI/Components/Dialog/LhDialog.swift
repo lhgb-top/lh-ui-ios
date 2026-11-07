@@ -33,6 +33,10 @@ public struct LhDialogAppearance: Equatable {
   public let visible: Bool
   /// 是否允许点击遮罩关闭
   public let closable: Bool
+  /// 确认按钮文字（confirmText 为 nil 时取当前语言包；空字符串表示隐藏按钮）
+  public let confirmText: String
+  /// 取消按钮文字（cancelText 为 nil 时取当前语言包；空字符串表示隐藏按钮）
+  public let cancelText: String
 }
 
 /// 对话框令牌绑定与外观解析（纯函数，无 View 依赖）。
@@ -45,10 +49,19 @@ public struct LhDialogAppearance: Equatable {
 /// - 标题取 dialog.titleFontSize + color.text.primary，内容取 dialog.contentFontSize + color.text.regular
 /// - 确认按钮按 type 映射语义色；取消按钮固定 default 类型
 public enum LhDialogStyle {
+  /// 解析外观（含默认按钮文案的语言包解析，纯函数）。
+  ///
+  /// - Parameters:
+  ///   - confirmText/cancelText: nil 时取 `texts` 语言包的对应文案（R-n5：
+  ///     spec 默认值 `"确认"` / `"取消"` 的多语言等价）；空字符串表示隐藏按钮
+  ///   - texts: 语言文案包，缺省简体中文
   public static func resolveAppearance(
     visible: Bool,
     type: LhDialogType,
     closable: Bool,
+    confirmText: String? = nil,
+    cancelText: String? = nil,
+    texts: LhTexts = ZhCnLhTexts,
     colors: LhColors
   ) -> LhDialogAppearance {
     let confirm: Color
@@ -77,7 +90,9 @@ public enum LhDialogStyle {
       confirmTextColor: colors.onPrimary,
       cancelTextColor: colors.textPrimary,
       visible: visible,
-      closable: closable
+      closable: closable,
+      confirmText: confirmText ?? texts.dialogConfirm,
+      cancelText: cancelText ?? texts.dialogCancel
     )
   }
 
@@ -101,10 +116,10 @@ public struct LhDialog: View {
   public var content: String = ""
   /// 语义类型，决定确认按钮颜色
   public var type: LhDialogType = .default
-  /// 确认按钮文字
-  public var confirmText: String = "确认"
-  /// 取消按钮文字
-  public var cancelText: String = "取消"
+  /// 确认按钮文字；nil（缺省）取当前语言包，空字符串隐藏按钮
+  public var confirmText: String? = nil
+  /// 取消按钮文字；nil（缺省）取当前语言包，空字符串隐藏按钮
+  public var cancelText: String? = nil
   /// 是否允许点击遮罩关闭
   public var closable: Bool = false
   /// 确认回调；触发后随后触发 onClose（宿主据此置 visible 为 false）
@@ -115,14 +130,15 @@ public struct LhDialog: View {
   public var onClose: (() -> Void)? = nil
 
   @Environment(\.lhColors) private var colors
+  @Environment(\.lhTexts) private var texts
 
   public init(
     visible: Binding<Bool>,
     title: String = "",
     content: String = "",
     type: LhDialogType = .default,
-    confirmText: String = "确认",
-    cancelText: String = "取消",
+    confirmText: String? = nil,
+    cancelText: String? = nil,
     closable: Bool = false,
     onConfirm: (() -> Void)? = nil,
     onCancel: (() -> Void)? = nil,
@@ -142,7 +158,9 @@ public struct LhDialog: View {
 
   public var body: some View {
     let appearance = LhDialogStyle.resolveAppearance(
-      visible: visible, type: type, closable: closable, colors: colors
+      visible: visible, type: type, closable: closable,
+      confirmText: confirmText, cancelText: cancelText,
+      texts: texts, colors: colors
     )
 
     // 黄金用例 hidden-not-rendered：不可见时不渲染任何内容
@@ -177,26 +195,30 @@ public struct LhDialog: View {
             }
 
             HStack(spacing: appearance.gap) {
-              // 取消按钮固定 default 类型
-              LhButton(
-                lhOnClick: {
-                  onCancel?()
-                  close()  // 黄金用例 cancel-emits-oncancel
-                },
-                text: cancelText
-              )
-              .frame(maxWidth: .infinity)
+              // 取消按钮固定 default 类型；spec：cancelText 为空字符串时不渲染
+              if !appearance.cancelText.isEmpty {
+                LhButton(
+                  lhOnClick: {
+                    onCancel?()
+                    close()  // 黄金用例 cancel-emits-oncancel
+                  },
+                  text: appearance.cancelText
+                )
+                .frame(maxWidth: .infinity)
+              }
 
-              // 确认按钮按 type 映射语义色
-              LhButton(
-                lhOnClick: {
-                  onConfirm?()
-                  close()  // 黄金用例 confirm-emits-onconfirm + confirm-also-emits-onclose
-                },
-                type: Self.buttonType(for: type),
-                text: confirmText
-              )
-              .frame(maxWidth: .infinity)
+              // 确认按钮按 type 映射语义色；spec：confirmText 为空字符串时不渲染
+              if !appearance.confirmText.isEmpty {
+                LhButton(
+                  lhOnClick: {
+                    onConfirm?()
+                    close()  // 黄金用例 confirm-emits-onconfirm + confirm-also-emits-onclose
+                  },
+                  type: Self.buttonType(for: type),
+                  text: appearance.confirmText
+                )
+                .frame(maxWidth: .infinity)
+              }
             }
             .padding(.top, appearance.gap)
           }
