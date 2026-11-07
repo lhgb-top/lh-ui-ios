@@ -21,21 +21,26 @@ lh-ui-ios/
 │   ├── link-tokens.mjs        # 令牌本地连接（三级存在性守卫，D18）
 │   ├── gen-sim-tokens.mjs     # 文档模拟器令牌 CSS 生成（D19）
 │   └── gen-doc-pages.mjs      # md → 原生文档页（D21）：产出 LhUIDocs/pages/ 与 DocRegistry.swift
+├── docsapp/                   # 【独立文档 APP】（对标 Android :docsapp）极薄 Xcode App 工程：
+│                              # @main App 直接宿主 LhDocsView()；Run / Archive 出「lh-ui 文档」IPA
 ├── Sources/
 │   ├── LhUITokens/Sources/LhUITokens/   # 【生成物，gitignore】LhTokens / LhDarkTokens / LhShadow
 │   ├── LhUI/
 │   │   ├── Theme/LhTheme.swift              # LhColors 色板 + Light/DarkLhColors + Environment(\.lhColors) + LhTheme 容器
+│   │   ├── Locale/                          # 多语言层（与 LhColors 同构）：LhTexts 值类型 + 10 语言包 +
+│   │                                       # LhLocale 单例（setLocale/register，对标 web 血脉 LhLocale）
 │   │   └── Components/<Comp>/               # 15 个组件：Button Cell Checkbox Dialog Icon Input Loading
 │   │                                       # Navbar Picker Radio Switch Tag Text Textarea Toast
 │   │       ├── Lh<Comp>.swift               # View + Lh<Comp>Style.resolveAppearance 纯函数 + Lh<Comp>Appearance 结构体
 │   │       └── Lh<Comp>Previews.swift       # #Preview（Icon 另有 LhIconMap.swift 图标名→SF Symbol 表）
 │   └── LhUIDocs/                            # 原生文档模块（D21）：真交互主场，对标 Android :docsui
-│       ├── LhDocsView.swift                 # 宿主：自管返回栈 + LhNavbar dogfood + 明暗切换 + 全局 LhToast
+│       ├── LhDocsView.swift                 # SwiftUI 宿主：自管返回栈 + LhNavbar dogfood + 明暗切换 + 全局 LhToast
+│       ├── LhDocsUIKit.swift                # UIKit 宿主嵌入桥：LhDocsViewController（#if canImport(UIKit) 门控）
 │       ├── DocRegistry.swift                # 【生成物，禁手改】页面注册表（顺序对齐 docs 侧边栏）
 │       ├── Model/DocModels.swift            # DocGroup/DocEntry/DocSection/DocTable/DocPreviewScope
 │       ├── Widgets/                         # DocPalette（docs 令牌取色别名）/ DocHeading / DocProse /
 │       │                                    # DocCodeBlock / DocTableView / DocPreviewFrame / StatefulPreview
-│       ├── pages/                           # 【生成物，禁手改】19 个条目（14 组件 + 5 指南）
+│       ├── pages/                           # 【生成物，禁手改】20 个条目（15 组件 + 5 指南）
 │       └── Previews/                        # 手写真交互预览：{Comp}Previews.swift，方法名对齐 SCENE_MAP
 ├── Tests/LhUITests/Lh<Comp>Tests.swift      # 每组件一份 XCTest（黄金用例，仅 macOS 宿主可跑）
 ├── docs/                      # VitePress 文档站（内联静态 HTML 模拟器，D19）
@@ -93,6 +98,12 @@ lh-ui-ios/
    再 `pnpm gen:docs`；真交互预览手写在 `Sources/LhUIDocs/Previews/{Comp}Previews.swift`，
    方法名必须与 `scripts/gen-doc-pages.mjs` 的 SCENE_MAP 对齐，签名固定为
    `static func <scene>(_ scope: DocPreviewScope) -> AnyView`。
+9. **库内运行时字符串禁止字面量**（i18n）：组件渲染体里禁止出现面向用户的字符串字面量
+   （`"加载中"`、`"开关"`、`"输入框"` 等），一律取 `Environment(\.lhTexts)` 的
+   `LhTexts` 字段；新增库内字符串 = 先给 `LhTexts` 加字段并同步 10 个语言包
+   （`Sources/LhUI/Locale/`），再在组件里消费。Demo文案（Previews / LhUIDocs / 组件
+   `#Preview`）不在此列。返回 `"*"`（必填星号）、`"n/m"`（字数统计）等符号性/数字
+   格式字符串无需 i18n。
 
 ## 五、令牌消费机制（D18）
 
@@ -114,6 +125,15 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
    由 `LhTheme(isDark:)` 注入明/暗色板。`LhColors` 是把 `LhTokens.Color` /
    `LhDarkTokens.Color` 平铺出来的不可变 struct（`LightLhColors` / `DarkLhColors` 是两个
    public 常量），单测直接构造它做断言。组件里**禁止**直接引用 `LhDarkTokens.Color`。
+
+**文案消费（LhTexts，与 LhColors 同构）**：组件库**自身**的运行时字符串（Dialog/Picker
+的确认/取消默认值、Loading/Switch/Input/Textarea 的无障碍标签回退）一律取
+`@Environment(\.lhTexts)` 的 `LhTexts` 字段，由 `LhTheme` 内部 `@ObservedObject`
+`LhLocale.shared` 自动注入；`LhLocale.setLocale` / `register` 与 web 血脉
+`@lh-ui/share` 的 `LhLocale` 语义对齐（10 内置语言 + 自定义包注册，未知语言回退 zh-CN，
+详见 `docs/guide/i18n.md`）。调用方传入的文本（title/content/label/options…）不经本层，
+其本地化是宿主职责。Dialog/Picker 的 `confirmText` / `cancelText` 是 `String?`：
+`nil` 取语言包，`""` 是「隐藏按钮」哨兵（dialog spec 语义）——两者不可混淆。
 
 ## 六、命名规范（总纲 D20）
 
@@ -148,6 +168,15 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
   `onValueChange:`。`LhCheckbox` / `LhRadio` / `LhSwitch` / `LhTag` / `LhCell` 的回调才是末位，
   尾随闭包写法成立。写 `LhUIDocs/Previews/` 时尤其易错（本机无 SwiftUI 无法即时编译验证）。
 - **圆角**：`Radius.circle` 是 0.5 分数，端侧取 `min(宽,高)/2` 换算，不能当 pt 用。
+- **⚠ UIKit 桥只在 iOS 构建可见**：`Sources/LhUIDocs/LhDocsUIKit.swift` 用
+  `#if canImport(UIKit)` 门控——macOS 宿主 `swift build` / `swift test`（黄金用例环境）
+  整文件跳过，**其编译验证只能靠 `docsapp/` 的 iOS 构建**；本机 Windows 同样看不到，
+  与 docsapp 的 Xcode 工程一并留 macOS 验证。
+- **⚠ docsapp 是 Xcode 工程而非 SPM target**：`docsapp/LhUIDocsApp.xcodeproj` 通过本地
+  Swift Package 引用仓库根 `Package.swift`（`XCLocalSwiftPackageReference`）；它不参与
+  `swift build`，改 `Package.swift` 的 target / 平台后 App 侧部署目标可能需要同步
+  （工程当前 iOS 15，与 Package.swift 对齐）。打开工程前必须先 `pnpm link:tokens`，
+  否则 `Sources/LhUITokens` 为空目录、本地包解析失败。
 - **#Preview 即文档**：`Lh<Comp>Previews.swift` 是组件示例的第一现场，文档站 HTML 模拟器是第二现场。
 
 ## 八、命令速查
@@ -159,6 +188,7 @@ core 的 codegen 产物是 `LhTokens`（明）与 `LhDarkTokens`（暗）两个 
 | 编译 | `swift build` | SPM 编译（含类型检查）。**仅 macOS**，Windows/Linux 无 SwiftUI |
 | 单测 | `swift test` | 黄金用例（macOS 宿主可跑，无需 iOS 模拟器） |
 | 单组件单测 | `swift test --filter LhToastTests` | 按 XCTestCase 类名过滤 |
+| 打包文档 App | `open docsapp/LhUIDocsApp.xcodeproj` | 对标 Android :docsapp：Run 模拟器 / Archive 出 IPA（**前置 `pnpm link:tokens`**） |
 | 文档 dev | `pnpm docs:dev` | 先 gen:sim 再起 VitePress（端口 5182） |
 | 文档构建 | `pnpm docs:build` | 部署前跑，产物在 docs/.vitepress/dist |
 | 原生文档页生成 | `pnpm gen:docs` | md → `Sources/LhUIDocs/pages/` + `DocRegistry.swift`（改 md 后必跑） |

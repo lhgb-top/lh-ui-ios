@@ -45,6 +45,43 @@ LhTheme(isDark: isDark) {
 }
 ```
 
+## 嵌入原生文档界面
+
+本仓自带一套**真交互文档 UI**（SwiftUI 实现，对标 Android `:docsui`）：全部组件文档 +
+指南 + 明暗切换 + 实时可交互预览。引入 `LhUIDocs` 产物即可拖入使用（对标 Android 的
+拖入即用）。
+
+### SwiftUI 宿主
+
+```swift
+import SwiftUI
+import LhUIDocs
+
+// 直接放进窗口，或 push 进 NavigationStack；零配置
+LhDocsView()
+```
+
+### UIKit 宿主
+
+```swift
+import LhUIDocs
+
+present(LhDocsViewController(), animated: true)
+// 等价 Android：LhDocs.launch(context)
+```
+
+## 独立文档 App（打包）
+
+`docsapp/` 是一个极薄 Xcode App 工程（对标 Android `:docsapp`），唯一职责是把
+`LhDocsView()` 装进可打包的 App 壳，直接打出「lh-ui 文档」IPA：
+
+```bash
+pnpm install && pnpm link:tokens   # 前置：同步令牌生成物（Sources/LhUITokens 是 gitignore）
+open docsapp/LhUIDocsApp.xcodeproj # Run（模拟器）/ Product → Archive
+```
+
+详见 [docsapp/README.md](./docsapp/README.md)。
+
 ## 源码开发（本仓）
 
 ```bash

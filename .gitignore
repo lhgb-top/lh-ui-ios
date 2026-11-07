@@ -14,6 +14,12 @@ docs/true/
 .build/
 *.xcodeproj
 Package.resolved
+# 例外：docsapp 是入库的打包壳工程，project.pbxproj 必须提交（见 docsapp/README.md）
+!docsapp/LhUIDocsApp.xcodeproj/
+!docsapp/LhUIDocsApp.xcodeproj/**
+# Xcode 用户态产物（scheme 个性化、断点等）不入库
+xcuserdata/
+*.xcuserstate
 
 # node
 node_modules/
@@ -24,4 +30,9 @@ node_modules/
 .swiftpm/
 
 # ZCode 工具目录（plan 文件等，非仓库内容）
+.zcode/
+
+# ---------- AI 工具产物目录（不上传）----------
+.mimosa/
+.v2c/
 .zcode/
