@@ -18,17 +18,75 @@ import LhUITokens
 public struct LhDocsView: View {
   /// 返回栈：栈顶即当前页 id；空栈落在首页（指南第一篇）
   @State private var stack: [String] = []
-  /// 明暗切换（右上角「切换主题」）
-  @State private var isDark = false
+  /// 主题模式：跟随系统 / 明色 / 暗色（侧边栏「设置」区切换；右上角为明暗快捷切换）
+  enum ThemeMode: String, CaseIterable {
+    case system, light, dark
+    var label: String {
+      switch self {
+      case .system: return "跟随系统"
+      case .light: return "明色"
+      case .dark: return "暗色"
+      }
+    }
+  }
+  @State private var themeMode: ThemeMode = .system
+  /// 语言：追踪 LhLocale 单例，切换即整树重渲染
+  @ObservedObject private var locale = LhLocale.shared
   /// 预览作用域：预览只通过它与宿主通信（全局 Toast），不自持浮层
   @StateObject private var scope = DocPreviewScope()
   /// 页面底色取主题色板（非字面量）
   @Environment(\.lhColors) private var colors
+  /// 系统色彩模式（themeMode 为 .system 时取其值）
+  @Environment(\.colorScheme) private var systemColorScheme
 
   /// 首页 id（空栈时展示）
   private static let homeId = "introduction"
 
-  public init() {}
+  public init() {
+    // 注册一个自定义语言包演示（对标 web 血脉 LhLocale.register）
+    LhLocale.shared.register("vi", pack: Self.vietnameseDemoPack)
+  }
+
+  /// 当前是否暗色：跟随系统时取系统色彩模式
+  private var isDark: Bool {
+    switch themeMode {
+    case .system: return systemColorScheme == .dark
+    case .light: return false
+    case .dark: return true
+    }
+  }
+
+  /// 语言选项：10 内置语言 + 1 个自定义包演示（vi）
+  private static let languages: [(code: String, label: String)] = [
+    ("zh-CN", "中文（简体）"),
+    ("zh-TW", "繁體中文"),
+    ("en-US", "English"),
+    ("ja-JP", "日本語"),
+    ("ko-KR", "한국어"),
+    ("de-DE", "Deutsch"),
+    ("fr-FR", "Français"),
+    ("es", "Español"),
+    ("ar", "العربية"),
+    ("ru", "Русский"),
+    ("vi", "Tiếng Việt（自定义包）"),
+  ]
+
+  /// 自定义语言包演示：越南语（宿主注册，非内置）
+  private static let vietnameseDemoPack = LhTexts(
+    dialogConfirm: "Xác nhận",
+    dialogCancel: "Hủy",
+    pickerConfirm: "Xác nhận",
+    pickerCancel: "Hủy",
+    loadingLabel: "Đang tải",
+    switchLabel: "Công tắc",
+    inputLabelFallback: "Trường văn bản",
+    textareaLabelFallback: "Trường văn bản nhiều dòng"
+  )
+
+  /// 当前语言的展示名（未登记时回退原始代码）
+  private var currentLanguageLabel: String {
+    Self.languages.first { $0.code == locale.current }?.label ?? locale.current
+  }
 
   private var currentId: String { stack.last ?? Self.homeId }
   private var entry: DocEntry { DocRegistry.byId(currentId) ?? DocRegistry.all[0] }
@@ -50,7 +108,7 @@ public struct LhDocsView: View {
             rightText: "切换主题",
             bordered: true,
             onLeftClick: goBack,
-            onRightClick: { isDark.toggle() }
+            onRightClick: { themeMode = isDark ? .light : .dark }
           )
 
           HStack(spacing: 0) {
@@ -83,6 +141,20 @@ public struct LhDocsView: View {
         stack.append(id)
       }
     )) {
+      // 主题与语言：多语言 + 明暗主题的演示入口（组件库能力的一等公民）
+      Section("设置") {
+        Menu("主题：\(themeMode.label)") {
+          ForEach(ThemeMode.allCases, id: \.self) { mode in
+            Button(mode.label) { themeMode = mode }
+          }
+        }
+        Menu("语言：\(currentLanguageLabel)") {
+          ForEach(Self.languages, id: \.code) { language in
+            Button(language.label) { locale.setLocale(language.code) }
+          }
+        }
+      }
+
       ForEach(DocGroup.allCases, id: \.self) { group in
         Section(group.label) {
           ForEach(DocRegistry.entries(in: group), id: \.id) { item in

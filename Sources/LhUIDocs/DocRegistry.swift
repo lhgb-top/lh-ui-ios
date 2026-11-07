@@ -9,6 +9,7 @@ enum DocRegistry {
     GuideInstallationDoc.entry,
     GuideQuickstartDoc.entry,
     GuideThemingDoc.entry,
+    GuideI18nDoc.entry,
     GuideLocalLinkingDoc.entry,
     ButtonDoc.entry,
     IconDoc.entry,
