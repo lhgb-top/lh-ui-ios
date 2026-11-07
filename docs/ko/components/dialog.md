@@ -76,8 +76,8 @@ LhDialog(
 | `title` | 제목 | `String` | `""` |
 | `content` | 본문 내용 | `String` | `""` |
 | `type` | 대화상자 유형, 확인 버튼의 시맨틱 색상을 결정 | `LhDialogType` | `.default` |
-| `confirmText` | 확인 버튼 글자 | `String` | `"确认"` |
-| `cancelText` | 취소 버튼 글자 | `String` | `"取消"` |
+| `confirmText` | 확인 버튼 글자. `nil`(기본값)은 언어 팩을 사용, `""`는 버튼 숨김 | `String?` | 언어 팩(간체 중국어 `"确认"`) |
+| `cancelText` | 취소 버튼 글자. `nil`(기본값)은 언어 팩을 사용, `""`는 버튼 숨김 | `String?` | 언어 팩(간체 중국어 `"取消"`) |
 | `closable` | 마스크 탭으로 닫기 가능 여부 | `Bool` | `false` |
 | `onConfirm` | 확인 콜백 | `(() -> Void)?` | `nil` |
 | `onCancel` | 취소 콜백 | `(() -> Void)?` | `nil` |

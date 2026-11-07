@@ -89,8 +89,8 @@ LhPicker(
 | `options` | Array of candidate texts (a single column) | `[String]` | — |
 | `value` | Selected index (controlled two-way binding; clamped when out of range) | `Int` | — |
 | `title` | Toolbar title | `String` | `""` |
-| `confirmText` | Confirm button text | `String` | `"确认"` |
-| `cancelText` | Cancel button text | `String` | `"取消"` |
+| `confirmText` | Confirm button text; `nil` (default) uses the language pack | `String?` | Language pack (Simplified Chinese `"确认"`) |
+| `cancelText` | Cancel button text; `nil` (default) uses the language pack | `String?` | Language pack (Simplified Chinese `"取消"`) |
 | `onValueChange` | Scroll snap callback; the payload is the new index | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | Confirm callback; the payload is the current index | `((Int) -> Void)?` | `nil` |
 | `onCancel` | Cancel callback | `(() -> Void)?` | `nil` |

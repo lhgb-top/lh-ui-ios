@@ -76,8 +76,8 @@ LhDialog(
 | `title` | Titre | `String` | `""` |
 | `content` | Contenu du corps | `String` | `""` |
 | `type` | Type de boîte de dialogue, détermine la couleur sémantique du bouton de confirmation | `LhDialogType` | `.default` |
-| `confirmText` | Texte du bouton de confirmation | `String` | `"确认"` |
-| `cancelText` | Texte du bouton d'annulation | `String` | `"取消"` |
+| `confirmText` | Texte du bouton de confirmation ; `nil` (par défaut) utilise le pack de langue, `""` masque le bouton | `String?` | Pack de langue (chinois simplifié `"确认"`) |
+| `cancelText` | Texte du bouton d'annulation ; `nil` (par défaut) utilise le pack de langue, `""` masque le bouton | `String?` | Pack de langue (chinois simplifié `"取消"`) |
 | `closable` | Fermeture par appui sur le masque ou non | `Bool` | `false` |
 | `onConfirm` | Rappel de confirmation | `(() -> Void)?` | `nil` |
 | `onCancel` | Rappel d'annulation | `(() -> Void)?` | `nil` |

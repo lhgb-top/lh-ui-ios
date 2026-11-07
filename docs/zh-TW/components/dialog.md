@@ -76,8 +76,8 @@ LhDialog(
 | `title` | 標題 | `String` | `""` |
 | `content` | 正文內容 | `String` | `""` |
 | `type` | 對話框類型，決定確認按鈕語義色 | `LhDialogType` | `.default` |
-| `confirmText` | 確認按鈕文字 | `String` | `"确认"` |
-| `cancelText` | 取消按鈕文字 | `String` | `"取消"` |
+| `confirmText` | 確認按鈕文字；`nil`（缺省）取當前語言包，`""` 不顯示該按鈕 | `String?` | 語言包（簡體中文 `"确认"`） |
+| `cancelText` | 取消按鈕文字；`nil`（缺省）取當前語言包，`""` 不顯示該按鈕 | `String?` | 語言包（簡體中文 `"取消"`）|
 | `closable` | 點選遮罩是否可關閉 | `Bool` | `false` |
 | `onConfirm` | 確認回呼 | `(() -> Void)?` | `nil` |
 | `onCancel` | 取消回呼 | `(() -> Void)?` | `nil` |

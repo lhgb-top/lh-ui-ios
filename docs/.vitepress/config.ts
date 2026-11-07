@@ -238,6 +238,10 @@ const guideGroups: Entry[] = [
     labels: { 'zh-CN': '主题与暗色', 'en-US': 'Theming & Dark Mode', 'zh-TW': '主題與暗色', 'ja-JP': 'テーマとダークモード', 'ko-KR': '테마 및 다크 모드', es: 'Temas y modo oscuro', ar: 'السمات والوضع الداكن', 'fr-FR': 'Thèmes et mode sombre', ru: 'Темы и тёмный режим' },
   },
   {
+    slug: 'i18n',
+    labels: { 'zh-CN': '多语言', 'en-US': 'Internationalization', 'zh-TW': '多語言', 'ja-JP': '多言語対応', 'ko-KR': '다국어', es: 'Internacionalización', ar: 'التدويل', 'fr-FR': 'Internationalisation', ru: 'Локализация' },
+  },
+  {
     slug: 'local-linking',
     labels: { 'zh-CN': '本地联调', 'en-US': 'Local Linking', 'zh-TW': '本地聯調', 'ja-JP': 'ローカル連携', 'ko-KR': '로컬 연결', es: 'Enlace local', ar: 'الربط المحلي', 'fr-FR': 'Liaison locale', ru: 'Локальная линковка' },
   },

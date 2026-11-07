@@ -89,8 +89,8 @@ LhPicker(
 | `options` | Array de textos de los candidatos (una columna) | `[String]` | — |
 | `value` | Índice del elemento seleccionado (enlace bidireccional controlado; fuera de rango se limita con clamp) | `Int` | — |
 | `title` | Título de la barra de herramientas | `String` | `""` |
-| `confirmText` | Texto del botón de confirmación | `String` | `"确认"` |
-| `cancelText` | Texto del botón de cancelación | `String` | `"取消"` |
+| `confirmText` | Texto del botón de confirmación; `nil` (predeterminado) usa el paquete de idioma | `String?` | Paquete de idioma (chino simplificado `"确认"`) |
+| `cancelText` | Texto del botón de cancelación; `nil` (predeterminado) usa el paquete de idioma | `String?` | Paquete de idioma (chino simplificado `"取消"`) |
 | `onValueChange` | Devolución de llamada del ajuste de la rueda; el payload es el nuevo índice | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | Devolución de llamada de confirmación; el payload es el índice actual | `((Int) -> Void)?` | `nil` |
 | `onCancel` | Devolución de llamada de cancelación | `(() -> Void)?` | `nil` |

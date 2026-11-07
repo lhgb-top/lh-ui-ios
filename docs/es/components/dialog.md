@@ -76,8 +76,8 @@ LhDialog(
 | `title` | Título | `String` | `""` |
 | `content` | Contenido del cuerpo | `String` | `""` |
 | `type` | Tipo de diálogo, determina el color semántico del botón de confirmación | `LhDialogType` | `.default` |
-| `confirmText` | Texto del botón de confirmación | `String` | `"确认"` |
-| `cancelText` | Texto del botón de cancelación | `String` | `"取消"` |
+| `confirmText` | Texto del botón de confirmación; `nil` (predeterminado) usa el paquete de idioma, `""` oculta el botón | `String?` | Paquete de idioma (chino simplificado `"确认"`) |
+| `cancelText` | Texto del botón de cancelación; `nil` (predeterminado) usa el paquete de idioma, `""` oculta el botón | `String?` | Paquete de idioma (chino simplificado `"取消"`) |
 | `closable` | Si una pulsación en el fondo puede cerrarlo | `Bool` | `false` |
 | `onConfirm` | Devolución de llamada de confirmación | `(() -> Void)?` | `nil` |
 | `onCancel` | Devolución de llamada de cancelación | `(() -> Void)?` | `nil` |

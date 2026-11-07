@@ -89,8 +89,8 @@ LhPicker(
 | `options` | 候補文字列の配列（1 列） | `[String]` | — |
 | `value` | 選択中のインデックス（コントロールドな双方向バインディング、範囲外は自動 clamp） | `Int` | — |
 | `title` | ツールバーのタイトル | `String` | `""` |
-| `confirmText` | 確認ボタンの文字 | `String` | `"确认"` |
-| `cancelText` | キャンセルボタンの文字 | `String` | `"取消"` |
+| `confirmText` | 確認ボタンのテキスト。`nil`（省略時）は言語パックを使用 | `String?` | 言語パック（簡体字中国語 `"确认"`） |
+| `cancelText` | キャンセルボタンのテキスト。`nil`（省略時）は言語パックを使用 | `String?` | 言語パック（簡体字中国語 `"取消"`） |
 | `onValueChange` | スナップ時のコールバック。payload は新しいインデックス | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | 確認コールバック。payload は現在のインデックス | `((Int) -> Void)?` | `nil` |
 | `onCancel` | キャンセルコールバック | `(() -> Void)?` | `nil` |

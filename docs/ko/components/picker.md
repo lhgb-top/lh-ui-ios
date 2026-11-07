@@ -89,8 +89,8 @@ LhPicker(
 | `options` | 후보 항목 글자 배열(단일 열) | `[String]` | — |
 | `value` | 선택 항목 인덱스(제어형 양방향 바인딩, 범위 초과 시 자동 clamp) | `Int` | — |
 | `title` | 툴바 제목 | `String` | `""` |
-| `confirmText` | 확인 버튼 글자 | `String` | `"确认"` |
-| `cancelText` | 취소 버튼 글자 | `String` | `"取消"` |
+| `confirmText` | 확인 버튼 글자. `nil`(기본값)은 언어 팩을 사용 | `String?` | 언어 팩(간체 중국어 `"确认"`) |
+| `cancelText` | 취소 버튼 글자. `nil`(기본값)은 언어 팩을 사용 | `String?` | 언어 팩(간체 중국어 `"取消"`) |
 | `onValueChange` | 스크롤 스냅 콜백, payload는 새 인덱스 | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | 확인 콜백, payload는 현재 인덱스 | `((Int) -> Void)?` | `nil` |
 | `onCancel` | 취소 콜백 | `(() -> Void)?` | `nil` |

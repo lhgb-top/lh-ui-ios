@@ -76,8 +76,8 @@ LhDialog(
 | `title` | Title | `String` | `""` |
 | `content` | Body content | `String` | `""` |
 | `type` | Dialog type, determines the confirm button's semantic color | `LhDialogType` | `.default` |
-| `confirmText` | Confirm button text | `String` | `"确认"` |
-| `cancelText` | Cancel button text | `String` | `"取消"` |
+| `confirmText` | Confirm button text; `nil` (default) uses the language pack, `""` hides the button | `String?` | Language pack (Simplified Chinese `"确认"`) |
+| `cancelText` | Cancel button text; `nil` (default) uses the language pack, `""` hides the button | `String?` | Language pack (Simplified Chinese `"取消"`) |
 | `closable` | Whether a backdrop tap can close it | `Bool` | `false` |
 | `onConfirm` | Confirm callback | `(() -> Void)?` | `nil` |
 | `onCancel` | Cancel callback | `(() -> Void)?` | `nil` |

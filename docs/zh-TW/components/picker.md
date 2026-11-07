@@ -89,8 +89,8 @@ LhPicker(
 | `options` | 候選項文字陣列（單列） | `[String]` | — |
 | `value` | 選中項索引（受控雙向綁定，越界自動 clamp） | `Int` | — |
 | `title` | 工具列標題 | `String` | `""` |
-| `confirmText` | 確認按鈕文字 | `String` | `"确认"` |
-| `cancelText` | 取消按鈕文字 | `String` | `"取消"` |
+| `confirmText` | 確認按鈕文字；`nil`（缺省）取當前語言包 | `String?` | 語言包（簡體中文 `"确认"`）|
+| `cancelText` | 取消按鈕文字；`nil`（缺省）取當前語言包 | `String?` | 語言包（簡體中文 `"取消"`）|
 | `onValueChange` | 滾動吸附回呼，payload 為新索引 | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | 確認回呼，payload 為當前索引 | `((Int) -> Void)?` | `nil` |
 | `onCancel` | 取消回呼 | `(() -> Void)?` | `nil` |

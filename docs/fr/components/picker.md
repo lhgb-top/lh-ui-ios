@@ -91,8 +91,8 @@ LhPicker(
 | `options` | Tableau des textes des options (une colonne) | `[String]` | — |
 | `value` | Index de l'option sélectionnée (liaison bidirectionnelle contrôlée, clamp automatique hors limites) | `Int` | — |
 | `title` | Titre de la barre d'outils | `String` | `""` |
-| `confirmText` | Texte du bouton de confirmation | `String` | `"确认"` |
-| `cancelText` | Texte du bouton d'annulation | `String` | `"取消"` |
+| `confirmText` | Texte du bouton de confirmation ; `nil` (par défaut) utilise le pack de langue | `String?` | Pack de langue (chinois simplifié `"确认"`) |
+| `cancelText` | Texte du bouton d'annulation ; `nil` (par défaut) utilise le pack de langue | `String?` | Pack de langue (chinois simplifié `"取消"`) |
 | `onValueChange` | Rappel d'aimantation de la roue, le payload est le nouvel index | `((Int) -> Void)?` | `nil` |
 | `onConfirm` | Rappel de confirmation, le payload est l'index actuel | `((Int) -> Void)?` | `nil` |
 | `onCancel` | Rappel d'annulation | `(() -> Void)?` | `nil` |

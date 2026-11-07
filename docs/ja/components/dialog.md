@@ -76,8 +76,8 @@ LhDialog(
 | `title` | タイトル | `String` | `""` |
 | `content` | 本文の内容 | `String` | `""` |
 | `type` | ダイアログのタイプ。確認ボタンのセマンティックカラーを決定 | `LhDialogType` | `.default` |
-| `confirmText` | 確認ボタンのテキスト | `String` | `"确认"` |
-| `cancelText` | キャンセルボタンのテキスト | `String` | `"取消"` |
+| `confirmText` | 確認ボタンのテキスト。`nil`（省略時）は言語パックを使用、`""` で非表示 | `String?` | 言語パック（簡体字中国語 `"确认"`） |
+| `cancelText` | キャンセルボタンのテキスト。`nil`（省略時）は言語パックを使用、`""` で非表示 | `String?` | 言語パック（簡体字中国語 `"取消"`） |
 | `closable` | オーバーレイのタップで閉じられるかどうか | `Bool` | `false` |
 | `onConfirm` | 確認のコールバック | `(() -> Void)?` | `nil` |
 | `onCancel` | キャンセルのコールバック | `(() -> Void)?` | `nil` |
