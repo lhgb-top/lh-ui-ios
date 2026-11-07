@@ -222,22 +222,36 @@ public extension EnvironmentValues {
   }
 }
 
-/// 主题容器。一行包裹即让内部所有 Lh 组件消费正确的明/暗色板。
+/// 主题容器。一行包裹即让内部所有 Lh 组件消费正确的明/暗色板与语言文案。
 ///
 /// - Parameters:
 ///   - isDark: 是否暗色模式。暗色色板取 core 预计算值（无运行时调色，见总纲 R-n6）
 ///   - colors: 显式覆盖色板（预设主题入口，预留扩展）
+///   - texts: 显式覆盖文案包（预留扩展）；缺省时跟随 `LhLocale.shared`，
+///     语言切换（`LhLocale.shared.setLocale(...)`）即刻触发整树重渲染
 public struct LhTheme<Content: View>: View {
   private let colors: LhColors
+  private let texts: LhTexts?
   private let content: Content
+  /// 追踪语言单例：语言切换 → 本容器重渲染 → 重新注入 \.lhTexts / \.locale
+  @ObservedObject private var locale = LhLocale.shared
 
-  public init(isDark: Bool = false, colors: LhColors? = nil, @ViewBuilder content: () -> Content) {
+  public init(
+    isDark: Bool = false,
+    colors: LhColors? = nil,
+    texts: LhTexts? = nil,
+    @ViewBuilder content: () -> Content
+  ) {
     self.colors = colors ?? (isDark ? DarkLhColors : LightLhColors)
+    self.texts = texts
     self.content = content()
   }
 
   public var body: some View {
-    content.environment(\.lhColors, colors)
+    content
+      .environment(\.lhColors, colors)
+      .environment(\.lhTexts, texts ?? locale.texts)
+      .environment(\.locale, locale.foundationLocale)
   }
 }
 
